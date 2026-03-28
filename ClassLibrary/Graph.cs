@@ -2,18 +2,19 @@
 {
     public class Graph
     {
+        //Список смежности
         public Dictionary<string, List<Edge>> adjacencyList = new Dictionary<string, List<Edge>>();
+
 
         public Dictionary<string, string> parent = new Dictionary<string, string>();
         public Dictionary<string, Colour> colour = new Dictionary<string, Colour>();
-        public bool cycle = false;
-        public enum Colour { White, Gray, Black }
+        public enum Colour { White, Gray, Black }   
 
         public void ReadGraph()
         {
             StreamReader F = new StreamReader("river_graph.txt");
 
-            //Считываем матрицу
+            //Считываем граф по строкам
             string currentString;
             string from, to;
             int weight;
@@ -34,7 +35,7 @@
         }
         public List<List<string>> FindComponents()
         {
-            //Список спписков вершин в каждой компоненте
+            //Список списков вершин в каждой компоненте
             List<List<string>> components = new List<List<string>>();
             InitColours();
 
@@ -91,6 +92,37 @@
                 }
             }
             colour[V] = Colour.Black;
+        }
+        public List<string> BFS(string startV)
+        {
+            InitColours();
+            parent.Clear();
+            Queue<string> q = new Queue<string>();
+            List<string> way = new List<string>();
+
+            q.Enqueue(startV);
+            colour[startV] = Colour.Gray;
+            parent[startV] = null;
+
+            while (q.Count != 0)
+            {
+                string current = q.Dequeue();
+                way.Add(current);
+                
+                foreach (Edge E in adjacencyList[current])
+                {
+                    string neighbor = E.To;
+                    if (neighbor != null && colour[neighbor] == Colour.White)
+                    {
+                        q.Enqueue(neighbor);
+                        colour[neighbor] = Colour.Gray;
+                        parent[neighbor] = current;
+                    }
+                }
+                colour[current] = Colour.Black;
+            }
+
+            return way;
         }
     }
 }
