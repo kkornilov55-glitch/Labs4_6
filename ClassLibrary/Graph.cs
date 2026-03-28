@@ -67,6 +67,8 @@
         }
         public List<string> DFS(string startV)
         {
+            if (!adjacencyList.ContainsKey(startV)) throw new InvalidDataException("В текущем графе не существует города с таким названием"); ;
+
             InitColours();
             parent[startV] = null;
 
@@ -97,6 +99,8 @@
         }
         public List<string> BFS(string startV)
         {
+            if (!adjacencyList.ContainsKey(startV)) throw new InvalidDataException("В текущем графе не существует города с таким названием"); ;
+
             InitColours();
             parent.Clear();
             Queue<string> q = new Queue<string>();
@@ -125,6 +129,19 @@
             }
 
             return way;
+        }
+        public bool IsReachable(string startV, string finishV)
+        {
+            if (!adjacencyList.ContainsKey(startV) || !adjacencyList.ContainsKey(finishV)) throw new InvalidDataException("В текущем графе не существует города с таким названием");
+
+            if (BFS(startV).Contains(finishV)) 
+                return true;
+            else
+                return false;
+        }
+        public List<string> GetPath(string startV, string finishV)
+        {
+
         }
     }
 }
