@@ -32,6 +32,28 @@
 
             F.Close();
         }
+        public List<List<string>> FindComponents()
+        {
+            //Список спписков вершин в каждой компоненте
+            List<List<string>> components = new List<List<string>>();
+            InitColours();
+
+            foreach (var V in adjacencyList.Keys) //Для всех вершин
+            {
+                //Если была не посещена
+                if (colour[V] == Colour.White)
+                {
+                    //Новая компонента
+                    List<string> component = new List<string>();
+                    DFS_Recursive(V, component);
+                    components.Add(component);
+                }
+            }
+
+            return components;
+                
+            
+        }
         private void InitColours()
         {
             foreach(var V in adjacencyList.Keys)
