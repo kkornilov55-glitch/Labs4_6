@@ -28,7 +28,9 @@
                 weight = int.Parse(currentString.Split(';')[2]);
 
                 if (!adjacencyList.ContainsKey(from)) adjacencyList[from] = new List<Edge>();
-                else adjacencyList[from].Add(new Edge(to, weight));
+                if (!adjacencyList.ContainsKey(to)) adjacencyList[to] = new List<Edge>();
+                adjacencyList[from].Add(new Edge(to, weight));
+                adjacencyList[to].Add(new Edge(from, weight));
             }
 
             F.Close();
