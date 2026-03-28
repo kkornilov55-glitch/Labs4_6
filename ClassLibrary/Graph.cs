@@ -5,11 +5,13 @@
         //Список смежности
         public Dictionary<string, List<Edge>> adjacencyList = new Dictionary<string, List<Edge>>();
 
+        private Dictionary<string, string> parent = new Dictionary<string, string>();
+        private Dictionary<string, Colour> colour = new Dictionary<string, Colour>();
+        private enum Colour { White, Gray, Black }   
 
-        public Dictionary<string, string> parent = new Dictionary<string, string>();
-        public Dictionary<string, Colour> colour = new Dictionary<string, Colour>();
-        public enum Colour { White, Gray, Black }   
-
+        /// <summary>
+        /// Метод для чтения графа из файла, необходим перед началом работы с классом.
+        /// </summary>
         public void ReadGraph()
         {
             StreamReader F = new StreamReader("river_graph.txt");
@@ -35,6 +37,10 @@
 
             F.Close();
         }
+        /// <summary>
+        /// Метод, для нахождения всех компонент.
+        /// </summary>
+        /// <returns>Список списков вершин в каждой компоненте</returns>
         public List<List<string>> FindComponents()
         {
             //Список списков вершин в каждой компоненте
@@ -65,9 +71,16 @@
             }
             parent.Clear();
         }
+        /// <summary>
+        /// Поиск в глубину (DFS)
+        /// </summary>
+        /// <param name="startV">Начальная вершина</param>
+        /// <returns>Список достижимых вершин из переданной методу</returns>
+        /// <exception cref="InvalidDataException">Ошибка, несуществующая вершина</exception>
         public List<string> DFS(string startV)
         {
-            if (!adjacencyList.ContainsKey(startV)) throw new InvalidDataException("В текущем графе не существует города с таким названием"); ;
+            if (!adjacencyList.ContainsKey(startV)) 
+                throw new InvalidDataException("В текущем графе не существует города с таким названием"); ;
 
             InitColours();
             parent[startV] = null;
@@ -97,9 +110,16 @@
             }
             colour[V] = Colour.Black;
         }
+        /// <summary>
+        /// Поиск в ширину (BFS)
+        /// </summary>
+        /// <param name="startV">Начальная вершина</param>
+        /// <returns>Список достижимых вершин из переданной методу</returns>
+        /// <exception cref="InvalidDataException">Ошибка, несуществующая вершина</exception>
         public List<string> BFS(string startV)
         {
-            if (!adjacencyList.ContainsKey(startV)) throw new InvalidDataException("В текущем графе не существует города с таким названием"); ;
+            if (!adjacencyList.ContainsKey(startV)) 
+                throw new InvalidDataException("В текущем графе не существует города с таким названием"); ;
 
             InitColours();
             parent.Clear();
@@ -130,18 +150,49 @@
 
             return way;
         }
+        /// <summary>
+        /// Метод, для проверки достижимости вершины finishV из startV
+        /// </summary>
+        /// <param name="startV">Начальная вершина</param>
+        /// <param name="finishV">Конечная вершина</param>
+        /// <returns>Да/нет</returns>
+        /// <exception cref="InvalidDataException">Ошибка, несуществующая вершина</exception>
         public bool IsReachable(string startV, string finishV)
         {
-            if (!adjacencyList.ContainsKey(startV) || !adjacencyList.ContainsKey(finishV)) throw new InvalidDataException("В текущем графе не существует города с таким названием");
+            if (!adjacencyList.ContainsKey(startV) || !adjacencyList.ContainsKey(finishV)) 
+                throw new InvalidDataException("В текущем графе не существует города с таким названием");
 
             if (BFS(startV).Contains(finishV)) 
                 return true;
             else
                 return false;
         }
-        public List<string> GetPath(string startV, string finishV)
+        /// <summary>
+        /// Метод, для восстановления найденного пути
+        /// </summary>
+        /// <param name="startV">Начальная вершина</param>
+        /// <param name="finishV">Конечная вершина</param>
+        /// <returns>Найденный путь (Списком вершин)</returns>
+        /// <exception cref="InvalidDataException">Ошибка, несуществующая вершина</exception>
+        public List<string> GetWay(string startV, string finishV)
         {
+            if (!adjacencyList.ContainsKey(startV) || !adjacencyList.ContainsKey(finishV)) 
+                throw new InvalidDataException("В текущем графе не существует города с таким названием");
 
+            List<string> way = new List<string>();
+            if (finishV == startV)
+                return null;
+
+            string current = finishV;
+            while (current != null)
+            {
+                way.Add(current);
+                if (current == startV || !parent.ContainsKey(current)) break;
+                current = parent[current];
+            }
+
+            way.Reverse();
+            return way;
         }
     }
 }
