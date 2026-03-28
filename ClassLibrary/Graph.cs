@@ -23,8 +23,8 @@
                 currentString = F.ReadLine();
                 if (string.IsNullOrEmpty(currentString)) break;
 
-                from = currentString.Split()[0];
-                to = currentString.Split()[1];
+                from = currentString.Split(';')[0];
+                to = currentString.Split(';')[1];
                 weight = int.Parse(currentString.Split(';')[2]);
 
                 if (!adjacencyList.ContainsKey(from)) adjacencyList[from] = new List<Edge>();
