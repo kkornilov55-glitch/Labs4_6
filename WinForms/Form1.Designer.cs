@@ -30,16 +30,28 @@
         {
             label1 = new Label();
             ReadGraphB = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
-            button5 = new Button();
             label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            label5 = new Label();
-            label6 = new Label();
             button6 = new Button();
+            ReadGraph_GB = new GroupBox();
+            panel1 = new Panel();
+            panel2 = new Panel();
+            DFS_GB = new GroupBox();
+            button1 = new Button();
+            label3 = new Label();
+            BFS_GB = new GroupBox();
+            button3 = new Button();
+            label4 = new Label();
+            Dijekstra_GB = new GroupBox();
+            button2 = new Button();
+            label5 = new Label();
+            MOD_GB = new GroupBox();
+            button4 = new Button();
+            label6 = new Label();
+            ReadGraph_GB.SuspendLayout();
+            DFS_GB.SuspendLayout();
+            BFS_GB.SuspendLayout();
+            Dijekstra_GB.SuspendLayout();
+            MOD_GB.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -50,7 +62,7 @@
             label1.ForeColor = Color.WhiteSmoke;
             label1.Location = new Point(0, 0);
             label1.Name = "label1";
-            label1.Size = new Size(692, 69);
+            label1.Size = new Size(696, 69);
             label1.TabIndex = 0;
             label1.Text = "Меню управления графом";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -59,111 +71,24 @@
             // 
             ReadGraphB.BackgroundImage = Properties.Resources.ReadGraphB;
             ReadGraphB.BackgroundImageLayout = ImageLayout.Zoom;
-            ReadGraphB.Location = new Point(12, 126);
+            ReadGraphB.Location = new Point(6, 15);
             ReadGraphB.Name = "ReadGraphB";
             ReadGraphB.Size = new Size(125, 125);
             ReadGraphB.TabIndex = 1;
             ReadGraphB.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.BackgroundImage = Properties.Resources.Dijkstra_B;
-            button2.BackgroundImageLayout = ImageLayout.Zoom;
-            button2.Location = new Point(420, 126);
-            button2.Name = "button2";
-            button2.Size = new Size(125, 125);
-            button2.TabIndex = 2;
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.BackgroundImage = Properties.Resources.DFS_B;
-            button3.BackgroundImageLayout = ImageLayout.Zoom;
-            button3.Location = new Point(148, 126);
-            button3.Name = "button3";
-            button3.Size = new Size(125, 125);
-            button3.TabIndex = 3;
-            button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            button4.BackgroundImage = Properties.Resources.BFS_B;
-            button4.BackgroundImageLayout = ImageLayout.Zoom;
-            button4.Location = new Point(283, 126);
-            button4.Name = "button4";
-            button4.Size = new Size(125, 125);
-            button4.TabIndex = 4;
-            button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            button5.BackgroundImage = Properties.Resources.MOD_B;
-            button5.BackgroundImageLayout = ImageLayout.Zoom;
-            button5.Location = new Point(555, 126);
-            button5.Name = "button5";
-            button5.Size = new Size(125, 125);
-            button5.TabIndex = 5;
-            button5.UseVisualStyleBackColor = true;
+            ReadGraphB.Click += ReadGraphB_Click;
             // 
             // label2
             // 
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("MS Reference Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
             label2.ForeColor = SystemColors.ButtonFace;
-            label2.Location = new Point(12, 254);
+            label2.Location = new Point(6, 143);
             label2.Name = "label2";
             label2.Size = new Size(125, 46);
             label2.TabIndex = 6;
             label2.Text = "Загрузить\r\nграф\r\n";
             label2.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // label3
-            // 
-            label3.BackColor = Color.Transparent;
-            label3.Font = new Font("MS Reference Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label3.ForeColor = SystemColors.ButtonFace;
-            label3.Location = new Point(148, 254);
-            label3.Name = "label3";
-            label3.Size = new Size(125, 46);
-            label3.TabIndex = 7;
-            label3.Text = "DFS";
-            label3.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // label4
-            // 
-            label4.BackColor = Color.Transparent;
-            label4.Font = new Font("MS Reference Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label4.ForeColor = SystemColors.ButtonFace;
-            label4.Location = new Point(283, 254);
-            label4.Name = "label4";
-            label4.Size = new Size(125, 46);
-            label4.TabIndex = 8;
-            label4.Text = "BFS";
-            label4.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // label5
-            // 
-            label5.BackColor = Color.Transparent;
-            label5.Font = new Font("MS Reference Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label5.ForeColor = SystemColors.ButtonFace;
-            label5.Location = new Point(420, 254);
-            label5.Name = "label5";
-            label5.Size = new Size(125, 46);
-            label5.TabIndex = 9;
-            label5.Text = "Дейкстра";
-            label5.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // label6
-            // 
-            label6.BackColor = Color.Transparent;
-            label6.Font = new Font("MS Reference Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label6.ForeColor = SystemColors.ButtonFace;
-            label6.Location = new Point(551, 254);
-            label6.Name = "label6";
-            label6.Size = new Size(125, 46);
-            label6.TabIndex = 10;
-            label6.Text = "МОД";
-            label6.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // button6
             // 
@@ -171,11 +96,172 @@
             button6.BackgroundImage = Properties.Resources.free_icon_open_book_171322;
             button6.BackgroundImageLayout = ImageLayout.Zoom;
             button6.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
-            button6.Location = new Point(645, 335);
+            button6.Location = new Point(651, 335);
             button6.Name = "button6";
             button6.Size = new Size(39, 34);
             button6.TabIndex = 11;
             button6.UseVisualStyleBackColor = false;
+            // 
+            // ReadGraph_GB
+            // 
+            ReadGraph_GB.BackColor = Color.Transparent;
+            ReadGraph_GB.Controls.Add(ReadGraphB);
+            ReadGraph_GB.Controls.Add(label2);
+            ReadGraph_GB.Location = new Point(6, 109);
+            ReadGraph_GB.Name = "ReadGraph_GB";
+            ReadGraph_GB.Size = new Size(136, 191);
+            ReadGraph_GB.TabIndex = 12;
+            ReadGraph_GB.TabStop = false;
+            // 
+            // panel1
+            // 
+            panel1.Location = new Point(58, 30);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(55, 10);
+            panel1.TabIndex = 13;
+            // 
+            // panel2
+            // 
+            panel2.Location = new Point(573, 30);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(55, 10);
+            panel2.TabIndex = 14;
+            // 
+            // DFS_GB
+            // 
+            DFS_GB.BackColor = Color.Transparent;
+            DFS_GB.Controls.Add(button1);
+            DFS_GB.Controls.Add(label3);
+            DFS_GB.Location = new Point(143, 109);
+            DFS_GB.Name = "DFS_GB";
+            DFS_GB.Size = new Size(136, 191);
+            DFS_GB.TabIndex = 15;
+            DFS_GB.TabStop = false;
+            DFS_GB.Visible = false;
+            // 
+            // button1
+            // 
+            button1.BackgroundImage = Properties.Resources.DFS_B;
+            button1.BackgroundImageLayout = ImageLayout.Zoom;
+            button1.Location = new Point(6, 15);
+            button1.Name = "button1";
+            button1.Size = new Size(125, 125);
+            button1.TabIndex = 1;
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("MS Reference Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label3.ForeColor = SystemColors.ButtonFace;
+            label3.Location = new Point(6, 143);
+            label3.Name = "label3";
+            label3.Size = new Size(125, 46);
+            label3.TabIndex = 6;
+            label3.Text = "DFS";
+            label3.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // BFS_GB
+            // 
+            BFS_GB.BackColor = Color.Transparent;
+            BFS_GB.Controls.Add(button3);
+            BFS_GB.Controls.Add(label4);
+            BFS_GB.Location = new Point(280, 109);
+            BFS_GB.Name = "BFS_GB";
+            BFS_GB.Size = new Size(136, 191);
+            BFS_GB.TabIndex = 16;
+            BFS_GB.TabStop = false;
+            BFS_GB.Visible = false;
+            // 
+            // button3
+            // 
+            button3.BackgroundImage = Properties.Resources.BFS_B;
+            button3.BackgroundImageLayout = ImageLayout.Zoom;
+            button3.Location = new Point(6, 15);
+            button3.Name = "button3";
+            button3.Size = new Size(125, 125);
+            button3.TabIndex = 1;
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            label4.BackColor = Color.Transparent;
+            label4.Font = new Font("MS Reference Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label4.ForeColor = SystemColors.ButtonFace;
+            label4.Location = new Point(6, 143);
+            label4.Name = "label4";
+            label4.Size = new Size(125, 46);
+            label4.TabIndex = 6;
+            label4.Text = "BFS";
+            label4.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // Dijekstra_GB
+            // 
+            Dijekstra_GB.BackColor = Color.Transparent;
+            Dijekstra_GB.Controls.Add(button2);
+            Dijekstra_GB.Controls.Add(label5);
+            Dijekstra_GB.Location = new Point(417, 109);
+            Dijekstra_GB.Name = "Dijekstra_GB";
+            Dijekstra_GB.Size = new Size(136, 191);
+            Dijekstra_GB.TabIndex = 17;
+            Dijekstra_GB.TabStop = false;
+            Dijekstra_GB.Visible = false;
+            // 
+            // button2
+            // 
+            button2.BackgroundImage = Properties.Resources.Dijkstra_B;
+            button2.BackgroundImageLayout = ImageLayout.Zoom;
+            button2.Location = new Point(6, 15);
+            button2.Name = "button2";
+            button2.Size = new Size(125, 125);
+            button2.TabIndex = 1;
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            label5.BackColor = Color.Transparent;
+            label5.Font = new Font("MS Reference Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label5.ForeColor = SystemColors.ButtonFace;
+            label5.Location = new Point(6, 143);
+            label5.Name = "label5";
+            label5.Size = new Size(125, 46);
+            label5.TabIndex = 6;
+            label5.Text = "Дейкстра";
+            label5.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // MOD_GB
+            // 
+            MOD_GB.BackColor = Color.Transparent;
+            MOD_GB.Controls.Add(button4);
+            MOD_GB.Controls.Add(label6);
+            MOD_GB.Location = new Point(554, 109);
+            MOD_GB.Name = "MOD_GB";
+            MOD_GB.Size = new Size(136, 191);
+            MOD_GB.TabIndex = 18;
+            MOD_GB.TabStop = false;
+            MOD_GB.Visible = false;
+            // 
+            // button4
+            // 
+            button4.BackgroundImage = Properties.Resources.MOD_B;
+            button4.BackgroundImageLayout = ImageLayout.Zoom;
+            button4.Location = new Point(6, 15);
+            button4.Name = "button4";
+            button4.Size = new Size(125, 125);
+            button4.TabIndex = 1;
+            button4.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            label6.BackColor = Color.Transparent;
+            label6.Font = new Font("MS Reference Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label6.ForeColor = SystemColors.ButtonFace;
+            label6.Location = new Point(6, 143);
+            label6.Name = "label6";
+            label6.Size = new Size(125, 46);
+            label6.TabIndex = 6;
+            label6.Text = "МОД";
+            label6.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // MenuF
             // 
@@ -183,22 +269,24 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.Gemini_Generated_Image_1qlwtx1qlwtx1qlw_1_;
             BackgroundImageLayout = ImageLayout.Zoom;
-            ClientSize = new Size(692, 378);
+            ClientSize = new Size(696, 379);
+            Controls.Add(MOD_GB);
+            Controls.Add(Dijekstra_GB);
+            Controls.Add(BFS_GB);
+            Controls.Add(DFS_GB);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
+            Controls.Add(ReadGraph_GB);
             Controls.Add(button6);
-            Controls.Add(label6);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(button5);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(ReadGraphB);
             Controls.Add(label1);
             DoubleBuffered = true;
             Name = "MenuF";
             Text = "Меню";
+            ReadGraph_GB.ResumeLayout(false);
+            DFS_GB.ResumeLayout(false);
+            BFS_GB.ResumeLayout(false);
+            Dijekstra_GB.ResumeLayout(false);
+            MOD_GB.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -206,15 +294,22 @@
 
         private Label label1;
         private Button ReadGraphB;
-        private Button button2;
-        private Button button3;
-        private Button button4;
-        private Button button5;
         private Label label2;
-        private Label label3;
-        private Label label4;
-        private Label label5;
-        private Label label6;
         private Button button6;
+        private GroupBox ReadGraph_GB;
+        private Panel panel1;
+        private Panel panel2;
+        private GroupBox DFS_GB;
+        private Button button1;
+        private Label label3;
+        private GroupBox BFS_GB;
+        private Button button3;
+        private Label label4;
+        private GroupBox Dijekstra_GB;
+        private Button button2;
+        private Label label5;
+        private GroupBox MOD_GB;
+        private Button button4;
+        private Label label6;
     }
 }
