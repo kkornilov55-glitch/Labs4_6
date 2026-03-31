@@ -36,7 +36,7 @@
             panel1 = new Panel();
             panel2 = new Panel();
             DFS_GB = new GroupBox();
-            button1 = new Button();
+            DFS_B = new Button();
             label3 = new Label();
             BFS_GB = new GroupBox();
             button3 = new Button();
@@ -130,7 +130,7 @@
             // DFS_GB
             // 
             DFS_GB.BackColor = Color.Transparent;
-            DFS_GB.Controls.Add(button1);
+            DFS_GB.Controls.Add(DFS_B);
             DFS_GB.Controls.Add(label3);
             DFS_GB.Location = new Point(143, 109);
             DFS_GB.Name = "DFS_GB";
@@ -139,15 +139,16 @@
             DFS_GB.TabStop = false;
             DFS_GB.Visible = false;
             // 
-            // button1
+            // DFS_B
             // 
-            button1.BackgroundImage = Properties.Resources.DFS_B;
-            button1.BackgroundImageLayout = ImageLayout.Zoom;
-            button1.Location = new Point(6, 15);
-            button1.Name = "button1";
-            button1.Size = new Size(125, 125);
-            button1.TabIndex = 1;
-            button1.UseVisualStyleBackColor = true;
+            DFS_B.BackgroundImage = Properties.Resources.DFS_B;
+            DFS_B.BackgroundImageLayout = ImageLayout.Zoom;
+            DFS_B.Location = new Point(6, 15);
+            DFS_B.Name = "DFS_B";
+            DFS_B.Size = new Size(125, 125);
+            DFS_B.TabIndex = 1;
+            DFS_B.UseVisualStyleBackColor = true;
+            DFS_B.Click += DFS_B_Click;
             // 
             // label3
             // 
@@ -300,7 +301,7 @@
         private Panel panel1;
         private Panel panel2;
         private GroupBox DFS_GB;
-        private Button button1;
+        private Button DFS_B;
         private Label label3;
         private GroupBox BFS_GB;
         private Button button3;

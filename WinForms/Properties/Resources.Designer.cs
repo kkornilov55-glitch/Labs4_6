@@ -123,6 +123,16 @@ namespace WinForms.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Menu_B {
+            get {
+                object obj = ResourceManager.GetObject("Menu_B", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap MOD_B {
             get {
                 object obj = ResourceManager.GetObject("MOD_B", resourceCulture);

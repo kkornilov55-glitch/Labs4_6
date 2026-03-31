@@ -4,6 +4,7 @@ namespace WinForms
 {
     public partial class MenuF : Form
     {
+        private Graph G = new Graph();
         public MenuF()
         {
             InitializeComponent();
@@ -12,7 +13,6 @@ namespace WinForms
 
         private void ReadGraphB_Click(object sender, EventArgs e)
         {
-            var G = new Graph();
             try
             {
                 G.ReadGraph();
@@ -29,9 +29,14 @@ namespace WinForms
             BFS_GB.Visible = true;
             Dijekstra_GB.Visible = true;
             MOD_GB.Visible = true;
+        }
+        private void DFS_B_Click(object sender, EventArgs e)
+        {
+            if (G == null) return;
+            var DFS_F = new DFS(this, G);
 
-
-
+            this.Hide();
+            DFS_F.Show();
         }
     }
 }
