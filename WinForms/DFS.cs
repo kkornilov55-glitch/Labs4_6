@@ -32,7 +32,18 @@ namespace WinForms
 
         private void ComponentsShow_B_Click(object sender, EventArgs e)
         {
-            DFS_Result_L.Text = 
+            List<List<string>> comps = G.FindComponents();
+            int CountComps = comps.Count;
+
+            string components = string.Empty;
+            for (int i = 0; i < CountComps; i++)
+            {
+                components += $"{i + 1} компонента: ";
+                foreach (string V in comps[i]) components += V + ", ";
+                components += "\n\n";
+            }
+            DFS_Result_L.Text = components[..^4] + '.';
+            MessageBox.Show($"В графе {CountComps} компонент(а) связности!", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
