@@ -24,5 +24,15 @@ namespace WinForms
             this.Close();
             menu.Show();
         }
+
+        private void StartDFS_B_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ComponentsShow_B_Click(object sender, EventArgs e)
+        {
+            DFS_Result_L.Text = 
+        }
     }
 }
