@@ -80,7 +80,9 @@
         public List<string> DFS(string startV)
         {
             if (!adjacencyList.ContainsKey(startV)) 
-                throw new InvalidDataException("В текущем графе не существует города с таким названием"); ;
+                throw new InvalidDataException("В текущем графе не существует города с таким названием");
+            if (adjacencyList[startV] == null)
+                throw new InvalidOperationException("Перед запуском алгоритма, необходимо выбрать стартовый город");
 
             InitColours();
             parent[startV] = null;
@@ -193,6 +195,13 @@
 
             way.Reverse();
             return way;
+        }
+        public List<string> GetTowns()
+        {
+            var towns = new List<string>();
+            foreach (string t in adjacencyList.Keys) towns.Add(t);
+            return towns;
+
         }
     }
 }

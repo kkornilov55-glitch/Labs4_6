@@ -18,6 +18,8 @@ namespace WinForms
             InitializeComponent();
             menu = parent;
             G = graph;
+
+            InitializeComboBox();
         }
         private void Menu_B_Click(object sender, EventArgs e)
         {
@@ -27,7 +29,12 @@ namespace WinForms
 
         private void StartDFS_B_Click(object sender, EventArgs e)
         {
+            var selectedStartTown = Towns_CB.SelectedItem?.ToString();
+            var way = G.DFS(selectedStartTown);
 
+            string wayToPrint = string.Empty;
+            foreach (var node in way) wayToPrint += node + ", ";
+            DFS_Result_L.Text = wayToPrint[..^2] + '.';
         }
 
         private void ComponentsShow_B_Click(object sender, EventArgs e)
@@ -44,6 +51,12 @@ namespace WinForms
             }
             DFS_Result_L.Text = components[..^4] + '.';
             MessageBox.Show($"В графе {CountComps} компонент(а) связности!", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        private void InitializeComboBox()
+        {
+            Towns_CB.Items.Clear();
+            Towns_CB.Items.AddRange(G.GetTowns().ToArray());
+            Towns_CB.SelectedIndex = 0;
         }
     }
 }

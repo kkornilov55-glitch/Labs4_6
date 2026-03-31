@@ -35,6 +35,7 @@
             StartDFS_B = new Button();
             DFS_Result_L = new Label();
             ComponentsShow_B = new Button();
+            Towns_CB = new ComboBox();
             SuspendLayout();
             // 
             // Menu_B
@@ -43,7 +44,7 @@
             Menu_B.BackgroundImage = Properties.Resources.Menu_B;
             Menu_B.BackgroundImageLayout = ImageLayout.Zoom;
             Menu_B.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
-            Menu_B.Location = new Point(334, 333);
+            Menu_B.Location = new Point(327, 333);
             Menu_B.Name = "Menu_B";
             Menu_B.Size = new Size(39, 34);
             Menu_B.TabIndex = 12;
@@ -80,9 +81,9 @@
             // StartDFS_B
             // 
             StartDFS_B.Font = new Font("MS Reference Sans Serif", 12F);
-            StartDFS_B.Location = new Point(12, 264);
+            StartDFS_B.Location = new Point(12, 298);
             StartDFS_B.Name = "StartDFS_B";
-            StartDFS_B.Size = new Size(144, 41);
+            StartDFS_B.Size = new Size(151, 39);
             StartDFS_B.TabIndex = 19;
             StartDFS_B.Text = "Старт";
             StartDFS_B.UseVisualStyleBackColor = true;
@@ -103,13 +104,22 @@
             // ComponentsShow_B
             // 
             ComponentsShow_B.Font = new Font("MS Reference Sans Serif", 12F);
-            ComponentsShow_B.Location = new Point(526, 264);
+            ComponentsShow_B.Location = new Point(527, 273);
             ComponentsShow_B.Name = "ComponentsShow_B";
-            ComponentsShow_B.Size = new Size(158, 41);
+            ComponentsShow_B.Size = new Size(157, 48);
             ComponentsShow_B.TabIndex = 22;
             ComponentsShow_B.Text = "Компоненты";
             ComponentsShow_B.UseVisualStyleBackColor = true;
             ComponentsShow_B.Click += ComponentsShow_B_Click;
+            // 
+            // Towns_CB
+            // 
+            Towns_CB.FormattingEnabled = true;
+            Towns_CB.Location = new Point(12, 264);
+            Towns_CB.Name = "Towns_CB";
+            Towns_CB.Size = new Size(151, 28);
+            Towns_CB.Sorted = true;
+            Towns_CB.TabIndex = 23;
             // 
             // DFS
             // 
@@ -118,6 +128,7 @@
             BackgroundImage = Properties.Resources.Gemini_Generated_Image_1qlwtx1qlwtx1qlw_1_;
             BackgroundImageLayout = ImageLayout.Zoom;
             ClientSize = new Size(696, 379);
+            Controls.Add(Towns_CB);
             Controls.Add(ComponentsShow_B);
             Controls.Add(DFS_Result_L);
             Controls.Add(StartDFS_B);
@@ -140,5 +151,6 @@
         private Button StartDFS_B;
         private Label DFS_Result_L;
         private Button ComponentsShow_B;
+        private ComboBox Towns_CB;
     }
 }
