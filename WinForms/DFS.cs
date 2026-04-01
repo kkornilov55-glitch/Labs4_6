@@ -9,11 +9,11 @@ using System.Windows.Forms;
 
 namespace WinForms
 {
-    public partial class DFS : Form
+    public partial class DFS_F : Form
     {
         private MenuF menu;
         private Graph G;
-        public DFS(MenuF parent, Graph graph)
+        public DFS_F(MenuF parent, Graph graph)
         {
             InitializeComponent();
             menu = parent;

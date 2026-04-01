@@ -1,6 +1,6 @@
 ﻿namespace WinForms
 {
-    partial class DFS
+    partial class DFS_F
     {
         /// <summary>
         /// Required designer variable.
@@ -121,7 +121,7 @@
             Towns_CB.Sorted = true;
             Towns_CB.TabIndex = 23;
             // 
-            // DFS
+            // DFS_F
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -137,7 +137,7 @@
             Controls.Add(label1);
             Controls.Add(Menu_B);
             DoubleBuffered = true;
-            Name = "DFS";
+            Name = "DFS_F";
             Text = "Поиск в глубину";
             ResumeLayout(false);
         }

@@ -33,7 +33,7 @@ namespace WinForms
         private void DFS_B_Click(object sender, EventArgs e)
         {
             if (G == null) return;
-            var DFS_F = new DFS(this, G);
+            var DFS_F = new DFS_F(this, G);
 
             this.Hide();
             DFS_F.Show();
