@@ -187,6 +187,7 @@
             Name = "BFS_F";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Поиск в ширину";
+            FormClosed += BFS_F_FormClosed;
             ResumeLayout(false);
             PerformLayout();
         }

@@ -140,6 +140,7 @@
             Name = "DFS_F";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Поиск в глубину";
+            FormClosed += DFS_F_FormClosed;
             ResumeLayout(false);
         }
 

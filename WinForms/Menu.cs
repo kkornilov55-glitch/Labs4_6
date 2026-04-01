@@ -37,7 +37,7 @@ namespace WinForms
         {
             if (G == null) return;
 
-            DFS_F = new DFS_F(this, G);
+            if (DFS_F == null) DFS_F = new DFS_F(this, G);
             DFS_F.StartPosition = FormStartPosition.Manual;
             DFS_F.Location = this.Location;
 
@@ -49,7 +49,7 @@ namespace WinForms
         {
             if (G == null) return;
 
-            BFS_F = new BFS_F(this, G);
+            if (BFS_F == null) BFS_F = new BFS_F(this, G);
             BFS_F.StartPosition = FormStartPosition.Manual;
             BFS_F.Location = this.Location;
 

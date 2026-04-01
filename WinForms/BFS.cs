@@ -71,7 +71,7 @@ namespace WinForms
                     else
                         BFS_Result_L.Text += way[i];
                 }
-            }    
+            }
             else
             {
                 MessageBox.Show($"{to} не достижим(а) из города {from} :(", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -90,8 +90,13 @@ namespace WinForms
 
         private void Menu_B_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Hide();
             menu.Show();
+        }
+
+        private void BFS_F_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            menu.Close();
         }
     }
 }

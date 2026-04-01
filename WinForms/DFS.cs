@@ -23,7 +23,7 @@ namespace WinForms
         }
         private void Menu_B_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Hide();
             menu.Show();
         }
 
@@ -57,6 +57,11 @@ namespace WinForms
             Towns_CB.Items.Clear();
             Towns_CB.Items.AddRange(G.GetTowns().ToArray());
             Towns_CB.SelectedIndex = 0;
+        }
+
+        private void DFS_F_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            menu.Close();
         }
     }
 }
