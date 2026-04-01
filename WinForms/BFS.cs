@@ -59,18 +59,22 @@ namespace WinForms
                 return;
             }
             if (isReachable)
-                MessageBox.Show($"{to} достижим(а) из города {from}!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            else
-                MessageBox.Show($"{to} не достижим(а) из города {from} :(", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            var way = G.GetWay(from, to);
-            BFS_Result_L.Text = string.Empty;
-            for (int i = 0; i < way.Count; i++)
             {
-                if (i != way.Count - 1)
-                    BFS_Result_L.Text += way[i] + " → ";
-                else
-                    BFS_Result_L.Text += way[i];
+                MessageBox.Show($"{to} достижим(а) из города {from}!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                var way = G.GetWay(from, to);
+                BFS_Result_L.Text = string.Empty;
+                for (int i = 0; i < way.Count; i++)
+                {
+                    if (i != way.Count - 1)
+                        BFS_Result_L.Text += way[i] + " → ";
+                    else
+                        BFS_Result_L.Text += way[i];
+                }
+            }    
+            else
+            {
+                MessageBox.Show($"{to} не достижим(а) из города {from} :(", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
