@@ -138,6 +138,7 @@
             Controls.Add(Menu_B);
             DoubleBuffered = true;
             Name = "DFS_F";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Поиск в глубину";
             ResumeLayout(false);
         }

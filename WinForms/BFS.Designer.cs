@@ -185,6 +185,7 @@
             Controls.Add(label1);
             DoubleBuffered = true;
             Name = "BFS_F";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Поиск в ширину";
             ResumeLayout(false);
             PerformLayout();

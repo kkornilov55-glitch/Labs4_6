@@ -5,6 +5,9 @@ namespace WinForms
     public partial class MenuF : Form
     {
         private Graph G = new Graph();
+        private Form DFS_F;
+        private Form BFS_F;
+
         public MenuF()
         {
             InitializeComponent();
@@ -33,7 +36,10 @@ namespace WinForms
         private void DFS_B_Click(object sender, EventArgs e)
         {
             if (G == null) return;
-            var DFS_F = new DFS_F(this, G);
+
+            DFS_F = new DFS_F(this, G);
+            DFS_F.StartPosition = FormStartPosition.Manual;
+            DFS_F.Location = this.Location;
 
             this.Hide();
             DFS_F.Show();
@@ -42,7 +48,10 @@ namespace WinForms
         private void BFS_B_Click(object sender, EventArgs e)
         {
             if (G == null) return;
-            var BFS_F = new BFS_F(this, G);
+
+            BFS_F = new BFS_F(this, G);
+            BFS_F.StartPosition = FormStartPosition.Manual;
+            BFS_F.Location = this.Location;
 
             this.Hide();
             BFS_F.Show();
