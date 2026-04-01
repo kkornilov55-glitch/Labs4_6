@@ -39,7 +39,7 @@
             DFS_B = new Button();
             label3 = new Label();
             BFS_GB = new GroupBox();
-            button3 = new Button();
+            BFS_B = new Button();
             label4 = new Label();
             Dijekstra_GB = new GroupBox();
             button2 = new Button();
@@ -165,7 +165,7 @@
             // BFS_GB
             // 
             BFS_GB.BackColor = Color.Transparent;
-            BFS_GB.Controls.Add(button3);
+            BFS_GB.Controls.Add(BFS_B);
             BFS_GB.Controls.Add(label4);
             BFS_GB.Location = new Point(280, 109);
             BFS_GB.Name = "BFS_GB";
@@ -174,15 +174,16 @@
             BFS_GB.TabStop = false;
             BFS_GB.Visible = false;
             // 
-            // button3
+            // BFS_B
             // 
-            button3.BackgroundImage = Properties.Resources.BFS_B;
-            button3.BackgroundImageLayout = ImageLayout.Zoom;
-            button3.Location = new Point(6, 15);
-            button3.Name = "button3";
-            button3.Size = new Size(125, 125);
-            button3.TabIndex = 1;
-            button3.UseVisualStyleBackColor = true;
+            BFS_B.BackgroundImage = Properties.Resources.BFS_B;
+            BFS_B.BackgroundImageLayout = ImageLayout.Zoom;
+            BFS_B.Location = new Point(6, 15);
+            BFS_B.Name = "BFS_B";
+            BFS_B.Size = new Size(125, 125);
+            BFS_B.TabIndex = 1;
+            BFS_B.UseVisualStyleBackColor = true;
+            BFS_B.Click += BFS_B_Click;
             // 
             // label4
             // 
@@ -304,7 +305,7 @@
         private Button DFS_B;
         private Label label3;
         private GroupBox BFS_GB;
-        private Button button3;
+        private Button BFS_B;
         private Label label4;
         private GroupBox Dijekstra_GB;
         private Button button2;

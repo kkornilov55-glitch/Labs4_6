@@ -32,13 +32,13 @@
             panel1 = new Panel();
             label1 = new Label();
             Menu_B = new Button();
-            DFS_Result_L = new Label();
+            BFS_Result_L = new Label();
             Towns_CB = new ComboBox();
             StartDFS_B = new Button();
             ComponentsShow_B = new Button();
-            button1 = new Button();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            Check_B = new Button();
+            StartV_TB = new TextBox();
+            EndV_TB = new TextBox();
             label2 = new Label();
             SuspendLayout();
             // 
@@ -80,18 +80,19 @@
             Menu_B.Size = new Size(39, 34);
             Menu_B.TabIndex = 21;
             Menu_B.UseVisualStyleBackColor = false;
+            Menu_B.Click += Menu_B_Click;
             // 
-            // DFS_Result_L
+            // BFS_Result_L
             // 
-            DFS_Result_L.BackColor = Color.Transparent;
-            DFS_Result_L.BorderStyle = BorderStyle.Fixed3D;
-            DFS_Result_L.Font = new Font("MS Reference Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            DFS_Result_L.ForeColor = SystemColors.ButtonFace;
-            DFS_Result_L.Location = new Point(12, 97);
-            DFS_Result_L.Name = "DFS_Result_L";
-            DFS_Result_L.Size = new Size(672, 156);
-            DFS_Result_L.TabIndex = 22;
-            DFS_Result_L.TextAlign = ContentAlignment.MiddleCenter;
+            BFS_Result_L.BackColor = Color.Transparent;
+            BFS_Result_L.BorderStyle = BorderStyle.Fixed3D;
+            BFS_Result_L.Font = new Font("MS Reference Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            BFS_Result_L.ForeColor = SystemColors.ButtonFace;
+            BFS_Result_L.Location = new Point(12, 97);
+            BFS_Result_L.Name = "BFS_Result_L";
+            BFS_Result_L.Size = new Size(672, 156);
+            BFS_Result_L.TabIndex = 22;
+            BFS_Result_L.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Towns_CB
             // 
@@ -111,6 +112,7 @@
             StartDFS_B.TabIndex = 24;
             StartDFS_B.Text = "Старт";
             StartDFS_B.UseVisualStyleBackColor = true;
+            StartDFS_B.Click += StartDFS_B_Click;
             // 
             // ComponentsShow_B
             // 
@@ -121,32 +123,34 @@
             ComponentsShow_B.TabIndex = 26;
             ComponentsShow_B.Text = "Компоненты";
             ComponentsShow_B.UseVisualStyleBackColor = true;
+            ComponentsShow_B.Click += ComponentsShow_B_Click_1;
             // 
-            // button1
+            // Check_B
             // 
-            button1.Font = new Font("MS Reference Sans Serif", 12F);
-            button1.Location = new Point(219, 300);
-            button1.Name = "button1";
-            button1.Size = new Size(284, 38);
-            button1.TabIndex = 27;
-            button1.Text = "Проверить достижимость";
-            button1.UseVisualStyleBackColor = true;
+            Check_B.Font = new Font("MS Reference Sans Serif", 12F);
+            Check_B.Location = new Point(219, 300);
+            Check_B.Name = "Check_B";
+            Check_B.Size = new Size(284, 38);
+            Check_B.TabIndex = 27;
+            Check_B.Text = "Проверить достижимость";
+            Check_B.UseVisualStyleBackColor = true;
+            Check_B.Click += Check_B_Click;
             // 
-            // textBox1
+            // StartV_TB
             // 
-            textBox1.Location = new Point(219, 266);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(121, 28);
-            textBox1.TabIndex = 28;
+            StartV_TB.Location = new Point(219, 266);
+            StartV_TB.Multiline = true;
+            StartV_TB.Name = "StartV_TB";
+            StartV_TB.Size = new Size(121, 28);
+            StartV_TB.TabIndex = 28;
             // 
-            // textBox2
+            // EndV_TB
             // 
-            textBox2.Location = new Point(382, 266);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(121, 28);
-            textBox2.TabIndex = 29;
+            EndV_TB.Location = new Point(382, 266);
+            EndV_TB.Multiline = true;
+            EndV_TB.Name = "EndV_TB";
+            EndV_TB.Size = new Size(121, 28);
+            EndV_TB.TabIndex = 29;
             // 
             // label2
             // 
@@ -168,17 +172,18 @@
             BackgroundImageLayout = ImageLayout.Zoom;
             ClientSize = new Size(696, 379);
             Controls.Add(label2);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(button1);
+            Controls.Add(EndV_TB);
+            Controls.Add(StartV_TB);
+            Controls.Add(Check_B);
             Controls.Add(ComponentsShow_B);
             Controls.Add(Towns_CB);
             Controls.Add(StartDFS_B);
-            Controls.Add(DFS_Result_L);
+            Controls.Add(BFS_Result_L);
             Controls.Add(Menu_B);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(label1);
+            DoubleBuffered = true;
             Name = "BFS_F";
             Text = "Поиск в ширину";
             ResumeLayout(false);
@@ -191,13 +196,13 @@
         private Panel panel1;
         private Label label1;
         private Button Menu_B;
-        private Label DFS_Result_L;
+        private Label BFS_Result_L;
         private ComboBox Towns_CB;
         private Button StartDFS_B;
         private Button ComponentsShow_B;
-        private Button button1;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private Button Check_B;
+        private TextBox StartV_TB;
+        private TextBox EndV_TB;
         private Label label2;
     }
 }

@@ -38,5 +38,14 @@ namespace WinForms
             this.Hide();
             DFS_F.Show();
         }
+
+        private void BFS_B_Click(object sender, EventArgs e)
+        {
+            if (G == null) return;
+            var BFS_F = new BFS_F(this, G);
+
+            this.Hide();
+            BFS_F.Show();
+        }
     }
 }

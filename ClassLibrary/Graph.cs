@@ -162,7 +162,7 @@
         public bool IsReachable(string startV, string finishV)
         {
             if (!adjacencyList.ContainsKey(startV) || !adjacencyList.ContainsKey(finishV)) 
-                throw new InvalidDataException("В текущем графе не существует города с таким названием");
+                throw new InvalidDataException();
 
             if (BFS(startV).Contains(finishV)) 
                 return true;
