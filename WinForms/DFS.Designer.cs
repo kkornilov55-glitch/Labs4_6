@@ -114,6 +114,7 @@
             // 
             // Towns_CB
             // 
+            Towns_CB.DropDownStyle = ComboBoxStyle.DropDownList;
             Towns_CB.FormattingEnabled = true;
             Towns_CB.Location = new Point(12, 264);
             Towns_CB.Name = "Towns_CB";
