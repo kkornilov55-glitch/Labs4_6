@@ -7,6 +7,7 @@ namespace WinForms
         private Graph G = new Graph();
         private Form DFS_F;
         private Form BFS_F;
+        private Form Info_F;
 
         public MenuF()
         {
@@ -55,6 +56,16 @@ namespace WinForms
 
             this.Hide();
             BFS_F.Show();
+        }
+
+        private void TaskInfo_B_Click(object sender, EventArgs e)
+        {
+            if (Info_F == null) Info_F = new Info_F(this);
+            Info_F.StartPosition = FormStartPosition.Manual;
+            Info_F.Location = this.Location;
+
+            this.Hide();
+            Info_F.Show();
         }
     }
 }

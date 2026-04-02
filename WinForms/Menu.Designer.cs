@@ -31,7 +31,7 @@
             label1 = new Label();
             ReadGraphB = new Button();
             label2 = new Label();
-            button6 = new Button();
+            TaskInfo_B = new Button();
             ReadGraph_GB = new GroupBox();
             panel1 = new Panel();
             panel2 = new Panel();
@@ -90,17 +90,18 @@
             label2.Text = "Загрузить\r\nграф\r\n";
             label2.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // button6
+            // TaskInfo_B
             // 
-            button6.BackColor = Color.White;
-            button6.BackgroundImage = Properties.Resources.free_icon_open_book_171322;
-            button6.BackgroundImageLayout = ImageLayout.Zoom;
-            button6.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
-            button6.Location = new Point(651, 335);
-            button6.Name = "button6";
-            button6.Size = new Size(39, 34);
-            button6.TabIndex = 11;
-            button6.UseVisualStyleBackColor = false;
+            TaskInfo_B.BackColor = Color.White;
+            TaskInfo_B.BackgroundImage = Properties.Resources.free_icon_open_book_171322;
+            TaskInfo_B.BackgroundImageLayout = ImageLayout.Zoom;
+            TaskInfo_B.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            TaskInfo_B.Location = new Point(651, 335);
+            TaskInfo_B.Name = "TaskInfo_B";
+            TaskInfo_B.Size = new Size(39, 34);
+            TaskInfo_B.TabIndex = 11;
+            TaskInfo_B.UseVisualStyleBackColor = false;
+            TaskInfo_B.Click += TaskInfo_B_Click;
             // 
             // ReadGraph_GB
             // 
@@ -279,7 +280,7 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(ReadGraph_GB);
-            Controls.Add(button6);
+            Controls.Add(TaskInfo_B);
             Controls.Add(label1);
             DoubleBuffered = true;
             Name = "MenuF";
@@ -297,7 +298,7 @@
         private Label label1;
         private Button ReadGraphB;
         private Label label2;
-        private Button button6;
+        private Button TaskInfo_B;
         private GroupBox ReadGraph_GB;
         private Panel panel1;
         private Panel panel2;
