@@ -142,6 +142,8 @@
             Controls.Add(Info_RTB);
             Controls.Add(Menu_B);
             DoubleBuffered = true;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "Info_F";
             Text = "Информация";
             FormClosed += Info_F_FormClosed;

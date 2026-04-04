@@ -138,6 +138,8 @@
             Controls.Add(label1);
             Controls.Add(Menu_B);
             DoubleBuffered = true;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "DFS_F";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Поиск в глубину";

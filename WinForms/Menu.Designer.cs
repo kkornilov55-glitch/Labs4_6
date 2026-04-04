@@ -283,6 +283,8 @@
             Controls.Add(TaskInfo_B);
             Controls.Add(label1);
             DoubleBuffered = true;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "MenuF";
             Text = "Меню";
             ReadGraph_GB.ResumeLayout(false);
