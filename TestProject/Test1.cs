@@ -1,0 +1,144 @@
+﻿using ClassLibrary;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+namespace TestProject
+{
+    [TestClass]
+    public class GraphTests
+    {
+        private Graph graph;
+
+        [TestInitialize]
+        public void Setup()
+        {
+            graph = new Graph();
+            // Файл уже скопирован в выходную папку благодаря настройкам проекта
+            graph.ReadGraph();
+        }
+
+        [TestMethod]
+        public void GetTowns_ShouldReturnAllVertices()
+        {
+            var towns = graph.GetTowns();
+            Assert.AreEqual(6, towns.Count);
+            CollectionAssert.AreEquivalent(new[] { "A", "B", "C", "D", "E", "F" }, towns);
+        }
+
+        [TestMethod]
+        public void DFS_ShouldReturnAllReachableVertices()
+        {
+            var result = graph.DFS("A");
+            Assert.AreEqual(4, result.Count);
+            CollectionAssert.AreEquivalent(new[] { "A", "B", "C", "D" }, result);
+        }
+
+        [TestMethod]
+        public void BFS_ShouldReturnAllReachableVertices()
+        {
+            var result = graph.BFS("A");
+            Assert.AreEqual(4, result.Count);
+            CollectionAssert.AreEquivalent(new[] { "A", "B", "C", "D" }, result);
+        }
+
+        [TestMethod]
+        public void DFS_InvalidVertex_ShouldThrowInvalidDataException()
+        {
+            bool correctResult = false;
+            try
+            {
+                graph.DFS("NonExistent");
+            }
+            catch (InvalidDataException)
+            {
+                correctResult = true;
+            }
+            catch
+            {
+                correctResult = false;
+            }
+
+            Assert.IsTrue(correctResult);
+        }
+
+        [TestMethod]
+        public void FindComponents_ShouldReturnCorrectDisconnectedComponents()
+        {
+            var components = graph.FindComponents();
+            Assert.AreEqual(2, components.Count);
+
+            var compA = components.FirstOrDefault(c => c.Contains("A"));
+            var compE = components.FirstOrDefault(c => c.Contains("E"));
+
+            CollectionAssert.AreEquivalent(new[] { "A", "B", "C", "D" }, compA);
+            CollectionAssert.AreEquivalent(new[] { "E", "F" }, compE);
+        }
+
+        [TestMethod]
+        public void IsReachable_WhenConnected_ShouldReturnTrue()
+        {
+            Assert.IsTrue(graph.IsReachable("A", "D"));
+        }
+
+        [TestMethod]
+        public void IsReachable_WhenDisconnected_ShouldReturnFalse()
+        {
+            Assert.IsFalse(graph.IsReachable("A", "E"));
+        }
+
+        [TestMethod]
+        public void GetWay_ShouldReturnCorrectPath()
+        {
+            graph.BFS("A"); // Инициализирует словарь parent
+            var path = graph.GetWay("A", "D");
+
+            Assert.IsNotNull(path);
+            Assert.AreEqual(4, path.Count);
+            Assert.AreEqual("A", path[0]);
+            Assert.AreEqual("B", path[1]);
+            Assert.AreEqual("C", path[2]);
+            Assert.AreEqual("D", path[3]);
+        }
+
+        [TestMethod]
+        public void GetWay_WhenStartEqualsFinish_ShouldReturnNull()
+        {
+            graph.BFS("A");
+            Assert.IsNull(graph.GetWay("A", "A"));
+        }
+
+        [TestMethod]
+        public void GetWay_InvalidVertex_ShouldThrowInvalidDataException()
+        {
+            bool correctResult = false;
+            try
+            {
+                graph.GetWay("A", "Z");
+            }
+            catch (InvalidDataException)
+            {
+                correctResult = true;
+            }
+            catch
+            {
+                correctResult = false;
+            }
+
+            Assert.IsTrue(correctResult);
+        }
+    }
+
+    [TestClass]
+    public class EdgeTests
+    {
+        [TestMethod]
+        public void Edge_Constructor_ShouldInitializeProperties()
+        {
+            var edge = new Edge("CityB", 150);
+            Assert.AreEqual("CityB", edge.To);
+            Assert.AreEqual(150, edge.Weight);
+        }
+    }
+}
