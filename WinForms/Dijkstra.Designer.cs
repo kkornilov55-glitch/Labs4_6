@@ -35,8 +35,10 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "DijkstraF";
-            Text = "Dijkstra";
+            Text = "Алгоритм Дейкстры";
             FormClosed += DijkstraF_FormClosed;
             ResumeLayout(false);
         }
