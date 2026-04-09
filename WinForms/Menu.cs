@@ -8,6 +8,7 @@ namespace WinForms
         private Form DFS_F;
         private Form BFS_F;
         private Form Info_F;
+        private Form Dijkstra_F;
 
         public MenuF()
         {
@@ -66,6 +67,18 @@ namespace WinForms
 
             this.Hide();
             Info_F.Show();
+        }
+
+        private void Dijkstra_B_Click(object sender, EventArgs e)
+        {
+            if (G == null) return;
+
+            if (Dijkstra_F == null) Dijkstra_F = new DijkstraF(this, G);
+            Dijkstra_F.StartPosition = FormStartPosition.Manual;
+            Dijkstra_F.Location = this.Location;
+
+            this.Hide();
+            Dijkstra_F.Show();
         }
     }
 }

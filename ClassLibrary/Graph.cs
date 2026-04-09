@@ -7,7 +7,7 @@
 
         private Dictionary<string, string> parent = new Dictionary<string, string>();
         private Dictionary<string, Colour> colour = new Dictionary<string, Colour>();
-        private enum Colour { White, Gray, Black }   
+        private enum Colour { White, Gray, Black }
 
         /// <summary>
         /// Метод для чтения графа из файла, необходим перед началом работы с классом.

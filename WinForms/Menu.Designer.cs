@@ -42,7 +42,7 @@
             BFS_B = new Button();
             label4 = new Label();
             Dijekstra_GB = new GroupBox();
-            button2 = new Button();
+            Dijkstra_B = new Button();
             label5 = new Label();
             MOD_GB = new GroupBox();
             button4 = new Button();
@@ -201,7 +201,7 @@
             // Dijekstra_GB
             // 
             Dijekstra_GB.BackColor = Color.Transparent;
-            Dijekstra_GB.Controls.Add(button2);
+            Dijekstra_GB.Controls.Add(Dijkstra_B);
             Dijekstra_GB.Controls.Add(label5);
             Dijekstra_GB.Location = new Point(417, 109);
             Dijekstra_GB.Name = "Dijekstra_GB";
@@ -210,15 +210,16 @@
             Dijekstra_GB.TabStop = false;
             Dijekstra_GB.Visible = false;
             // 
-            // button2
+            // Dijkstra_B
             // 
-            button2.BackgroundImage = Properties.Resources.Dijkstra_B;
-            button2.BackgroundImageLayout = ImageLayout.Zoom;
-            button2.Location = new Point(6, 15);
-            button2.Name = "button2";
-            button2.Size = new Size(125, 125);
-            button2.TabIndex = 1;
-            button2.UseVisualStyleBackColor = true;
+            Dijkstra_B.BackgroundImage = Properties.Resources.Dijkstra_B;
+            Dijkstra_B.BackgroundImageLayout = ImageLayout.Zoom;
+            Dijkstra_B.Location = new Point(6, 15);
+            Dijkstra_B.Name = "Dijkstra_B";
+            Dijkstra_B.Size = new Size(125, 125);
+            Dijkstra_B.TabIndex = 1;
+            Dijkstra_B.UseVisualStyleBackColor = true;
+            Dijkstra_B.Click += Dijkstra_B_Click;
             // 
             // label5
             // 
@@ -311,7 +312,7 @@
         private Button BFS_B;
         private Label label4;
         private GroupBox Dijekstra_GB;
-        private Button button2;
+        private Button Dijkstra_B;
         private Label label5;
         private GroupBox MOD_GB;
         private Button button4;
