@@ -11,9 +11,9 @@ namespace WinForms
 {
     public partial class BFS_F : Form
     {
-        private MenuF menu;
+        private Menu_F menu;
         private Graph G;
-        public BFS_F(MenuF parent, Graph graph)
+        public BFS_F(Menu_F parent, Graph graph)
         {
             InitializeComponent();
             menu = parent;

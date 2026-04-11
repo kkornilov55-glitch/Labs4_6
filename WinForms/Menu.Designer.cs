@@ -1,6 +1,6 @@
 ﻿namespace WinForms
 {
-    partial class MenuF
+    partial class Menu_F
     {
         /// <summary>
         ///  Required designer variable.

@@ -11,8 +11,8 @@ namespace WinForms
 {
     public partial class Info_F : Form
     {
-        private MenuF menu;
-        public Info_F(MenuF parent)
+        private Menu_F menu;
+        public Info_F(Menu_F parent)
         {
             InitializeComponent();
             WhiteInfoText();

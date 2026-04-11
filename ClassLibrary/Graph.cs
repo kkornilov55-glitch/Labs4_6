@@ -121,7 +121,7 @@
         public List<string> BFS(string startV)
         {
             if (!adjacencyList.ContainsKey(startV)) 
-                throw new InvalidDataException("В текущем графе не существует города с таким названием"); ;
+                throw new InvalidDataException("В текущем графе не существует города с таким названием");
 
             InitColours();
             parent.Clear();

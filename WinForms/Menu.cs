@@ -2,7 +2,7 @@ using ClassLibrary;
 
 namespace WinForms
 {
-    public partial class MenuF : Form
+    public partial class Menu_F : Form
     {
         private Graph G = new Graph();
         private Form DFS_F;
@@ -10,7 +10,7 @@ namespace WinForms
         private Form Info_F;
         private Form Dijkstra_F;
 
-        public MenuF()
+        public Menu_F()
         {
             InitializeComponent();
             ReadGraph_GB.Location = new Point(280, 109);
