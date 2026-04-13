@@ -32,9 +32,12 @@
             panel2 = new Panel();
             panel1 = new Panel();
             Dijkstra_Result_L = new Label();
-            Towns_CB = new ComboBox();
+            From_CB = new ComboBox();
             StartDijkstra_B = new Button();
             Menu_B = new Button();
+            To_CB = new ComboBox();
+            label2 = new Label();
+            WayLength_L = new Label();
             SuspendLayout();
             // 
             // label1
@@ -72,29 +75,30 @@
             Dijkstra_Result_L.ForeColor = SystemColors.ButtonFace;
             Dijkstra_Result_L.Location = new Point(12, 90);
             Dijkstra_Result_L.Name = "Dijkstra_Result_L";
-            Dijkstra_Result_L.Size = new Size(672, 156);
+            Dijkstra_Result_L.Size = new Size(672, 131);
             Dijkstra_Result_L.TabIndex = 22;
             Dijkstra_Result_L.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // Towns_CB
+            // From_CB
             // 
-            Towns_CB.DropDownStyle = ComboBoxStyle.DropDownList;
-            Towns_CB.FormattingEnabled = true;
-            Towns_CB.Location = new Point(12, 266);
-            Towns_CB.Name = "Towns_CB";
-            Towns_CB.Size = new Size(151, 28);
-            Towns_CB.Sorted = true;
-            Towns_CB.TabIndex = 25;
+            From_CB.DropDownStyle = ComboBoxStyle.DropDownList;
+            From_CB.FormattingEnabled = true;
+            From_CB.Location = new Point(12, 227);
+            From_CB.Name = "From_CB";
+            From_CB.Size = new Size(135, 28);
+            From_CB.Sorted = true;
+            From_CB.TabIndex = 25;
             // 
             // StartDijkstra_B
             // 
             StartDijkstra_B.Font = new Font("MS Reference Sans Serif", 12F);
-            StartDijkstra_B.Location = new Point(12, 300);
+            StartDijkstra_B.Location = new Point(12, 261);
             StartDijkstra_B.Name = "StartDijkstra_B";
-            StartDijkstra_B.Size = new Size(151, 39);
+            StartDijkstra_B.Size = new Size(330, 39);
             StartDijkstra_B.TabIndex = 24;
             StartDijkstra_B.Text = "Старт";
             StartDijkstra_B.UseVisualStyleBackColor = true;
+            StartDijkstra_B.Click += StartDijkstra_B_Click;
             // 
             // Menu_B
             // 
@@ -102,12 +106,46 @@
             Menu_B.BackgroundImage = Properties.Resources.Menu_B;
             Menu_B.BackgroundImageLayout = ImageLayout.Zoom;
             Menu_B.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
-            Menu_B.Location = new Point(324, 333);
+            Menu_B.Location = new Point(324, 321);
             Menu_B.Name = "Menu_B";
             Menu_B.Size = new Size(39, 34);
             Menu_B.TabIndex = 26;
             Menu_B.UseVisualStyleBackColor = false;
             Menu_B.Click += Menu_B_Click;
+            // 
+            // To_CB
+            // 
+            To_CB.DropDownStyle = ComboBoxStyle.DropDownList;
+            To_CB.FormattingEnabled = true;
+            To_CB.Location = new Point(212, 227);
+            To_CB.Name = "To_CB";
+            To_CB.Size = new Size(130, 28);
+            To_CB.Sorted = true;
+            To_CB.TabIndex = 27;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Segoe UI Black", 16.2F, FontStyle.Bold);
+            label2.ForeColor = Color.WhiteSmoke;
+            label2.Location = new Point(159, 221);
+            label2.Name = "label2";
+            label2.Size = new Size(41, 38);
+            label2.TabIndex = 31;
+            label2.Text = "→";
+            // 
+            // WayLength_L
+            // 
+            WayLength_L.BackColor = Color.Transparent;
+            WayLength_L.BorderStyle = BorderStyle.Fixed3D;
+            WayLength_L.Font = new Font("MS Reference Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            WayLength_L.ForeColor = SystemColors.ButtonFace;
+            WayLength_L.Location = new Point(348, 227);
+            WayLength_L.Name = "WayLength_L";
+            WayLength_L.Size = new Size(336, 73);
+            WayLength_L.TabIndex = 32;
+            WayLength_L.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // DijkstraF
             // 
@@ -116,8 +154,11 @@
             BackgroundImage = Properties.Resources.Gemini_Generated_Image_1qlwtx1qlwtx1qlw_1_;
             BackgroundImageLayout = ImageLayout.Zoom;
             ClientSize = new Size(696, 379);
+            Controls.Add(WayLength_L);
+            Controls.Add(label2);
+            Controls.Add(To_CB);
             Controls.Add(Menu_B);
-            Controls.Add(Towns_CB);
+            Controls.Add(From_CB);
             Controls.Add(StartDijkstra_B);
             Controls.Add(Dijkstra_Result_L);
             Controls.Add(panel2);
@@ -130,6 +171,7 @@
             Text = "Алгоритм Дейкстры";
             FormClosed += DijkstraF_FormClosed;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -138,8 +180,11 @@
         private Panel panel2;
         private Panel panel1;
         private Label Dijkstra_Result_L;
-        private ComboBox Towns_CB;
+        private ComboBox From_CB;
         private Button StartDijkstra_B;
         private Button Menu_B;
+        private ComboBox To_CB;
+        private Label label2;
+        private Label WayLength_L;
     }
 }

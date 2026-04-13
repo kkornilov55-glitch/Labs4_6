@@ -4,13 +4,13 @@
     {
         //Список смежности
         public Dictionary<string, List<Edge>> adjacencyList = new Dictionary<string, List<Edge>>();
-
-        private Dictionary<string, string> parent = new Dictionary<string, string>();
+        public Dictionary<string, string> parent { get; private set; } = new Dictionary<string, string>(); 
         private Dictionary<string, Colour> colour = new Dictionary<string, Colour>();
         private enum Colour { White, Gray, Black }
+        private const int INF = int.MaxValue;
 
         /// <summary>
-        /// Метод для чтения графа из файла, необходим перед началом работы с классом.
+        /// Метод для чтения графа из файла на выбор, необходим перед началом работы с классом.
         /// </summary>
         public void ReadGraph(string filePath)
         {
@@ -61,12 +61,12 @@
             }
 
             return components;
-                
-            
+
+
         }
         private void InitColours()
         {
-            foreach(var V in adjacencyList.Keys)
+            foreach (var V in adjacencyList.Keys)
             {
                 colour[V] = Colour.White;
             }
@@ -80,7 +80,7 @@
         /// <exception cref="InvalidDataException">Ошибка, несуществующая вершина</exception>
         public List<string> DFS(string startV)
         {
-            if (!adjacencyList.ContainsKey(startV)) 
+            if (!adjacencyList.ContainsKey(startV))
                 throw new InvalidDataException("В текущем графе не существует города с таким названием");
             if (adjacencyList[startV] == null)
                 throw new InvalidOperationException("Перед запуском алгоритма, необходимо выбрать стартовый город");
@@ -121,7 +121,7 @@
         /// <exception cref="InvalidDataException">Ошибка, несуществующая вершина</exception>
         public List<string> BFS(string startV)
         {
-            if (!adjacencyList.ContainsKey(startV)) 
+            if (!adjacencyList.ContainsKey(startV))
                 throw new InvalidDataException("В текущем графе не существует города с таким названием");
 
             InitColours();
@@ -137,7 +137,7 @@
             {
                 string current = q.Dequeue();
                 way.Add(current);
-                
+
                 foreach (Edge E in adjacencyList[current])
                 {
                     string neighbor = E.To;
@@ -162,10 +162,10 @@
         /// <exception cref="InvalidDataException">Ошибка, несуществующая вершина</exception>
         public bool IsReachable(string startV, string finishV)
         {
-            if (!adjacencyList.ContainsKey(startV) || !adjacencyList.ContainsKey(finishV)) 
+            if (!adjacencyList.ContainsKey(startV) || !adjacencyList.ContainsKey(finishV))
                 throw new InvalidDataException();
 
-            if (BFS(startV).Contains(finishV)) 
+            if (BFS(startV).Contains(finishV))
                 return true;
             else
                 return false;
@@ -177,9 +177,44 @@
         /// <param name="finishV">Конечная вершина</param>
         /// <returns>Найденный путь (Списком вершин)</returns>
         /// <exception cref="InvalidDataException">Ошибка, несуществующая вершина</exception>
+        public List<string> GetWay(string startV, string finishV, out int wayLength)
+        {
+            if (!adjacencyList.ContainsKey(startV) || !adjacencyList.ContainsKey(finishV))
+                throw new InvalidDataException("В текущем графе не существует города с таким названием");
+
+            List<string> way = new List<string>();
+            if (finishV == startV)
+            {
+                wayLength = 0;
+                way.Add(startV);
+                return way;
+            }
+
+            string current = finishV;
+            wayLength = 0;
+            string prew = null;
+            while (current != null)
+            {
+                way.Add(current);
+                if (current == startV || !parent.ContainsKey(current)) break;
+                prew = current;
+                current = parent[current];
+                foreach (Edge E in adjacencyList[current])
+                {
+                    if (E.To == prew)
+                    {
+                        wayLength += E.Weight;
+                        break;
+                    }
+                }
+            }
+            
+            way.Reverse();
+            return way;
+        }
         public List<string> GetWay(string startV, string finishV)
         {
-            if (!adjacencyList.ContainsKey(startV) || !adjacencyList.ContainsKey(finishV)) 
+            if (!adjacencyList.ContainsKey(startV) || !adjacencyList.ContainsKey(finishV))
                 throw new InvalidDataException("В текущем графе не существует города с таким названием");
 
             List<string> way = new List<string>();
@@ -187,6 +222,7 @@
                 return null;
 
             string current = finishV;
+            string prew = null;
             while (current != null)
             {
                 way.Add(current);
@@ -204,5 +240,61 @@
             return towns;
 
         }
+        public void Dijkstra(string startV)
+        {
+            if (!adjacencyList.ContainsKey(startV))
+                throw new InvalidDataException("В текущем графе не существует города с таким названием");
+
+            Dictionary<string, int> Distance = new Dictionary<string, int>();
+            Dictionary<string, bool> Visited = new Dictionary<string, bool>();
+            foreach (string V in adjacencyList.Keys)
+            {
+                Distance[V] = INF;
+                Visited[V] = false;
+            }
+            Distance[startV] = 0;
+
+            int MinD;
+            do
+            {
+                MinD = INF;
+                string MinV = null;
+                foreach (string V in adjacencyList.Keys)
+                {
+                    if (Distance[V] < MinD && !Visited[V])
+                    {
+                        MinD = Distance[V];
+                        MinV = V;
+                    }
+                }
+                if (MinV == null) break;
+                foreach (Edge E in adjacencyList[MinV])
+                {
+                    if (!Visited[E.To])
+                    {
+                        int newDist = Distance[MinV] + E.Weight;
+                        if (newDist < Distance[E.To])
+                        {
+                            Distance[E.To] = newDist;
+                            parent[E.To] = MinV;
+                        }
+                    }
+                }
+                Visited[MinV] = true;
+            } while (MinD < INF);
+        }
+        //public List<List<string>> GetWays(string startV)
+        //{
+        //    var ways = new List<List<string>>();
+
+        //    foreach (string V in adjacencyList.Keys)
+        //    {
+        //        if (startV == V) continue;
+        //        ways.Add(GetWay(startV, V));
+        //    }
+
+        //    return ways;
+        //}
+
     }
 }
