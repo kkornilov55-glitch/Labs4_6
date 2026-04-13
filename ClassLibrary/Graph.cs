@@ -208,8 +208,13 @@
                     }
                 }
             }
-            
+
             way.Reverse();
+            if (way[0] != startV)
+            {
+                wayLength = INF;
+                return null;
+            }
             return way;
         }
         public List<string> GetWay(string startV, string finishV)

@@ -16,7 +16,7 @@ namespace TestProject
         {
             graph = new Graph();
             // Файл уже скопирован в выходную папку благодаря настройкам проекта
-            graph.ReadGraph();
+            graph.ReadGraph("river_graph.txt");
         }
 
         [TestMethod]
@@ -127,6 +127,46 @@ namespace TestProject
             }
 
             Assert.IsTrue(correctResult);
+        }
+        [TestMethod]
+        public void Dijkstra_ShouldCalculateCorrectTotalDistance()
+        {
+            // Путь A -> B (10) -> C (20) -> D (30)
+            graph.Dijkstra("A");
+            var path = graph.GetWay("A", "D", out int distance);
+
+            Assert.IsNotNull(path);
+            Assert.AreEqual(60, distance); // 10 + 20 + 30
+        }
+        [TestMethod]
+        public void GetWay_ShouldReturnCorrectPathAndWeightForMidPoint()
+        {
+            graph.Dijkstra("A");
+            List<string> path = graph.GetWay("A", "C", out int totalWeight);
+
+            // Ожидаем путь A, B, C
+            Assert.AreEqual(3, path.Count);
+            CollectionAssert.AreEqual(new[] { "A", "B", "C" }, path);
+            // Ожидаем вес 10 + 20 = 30
+            Assert.AreEqual(30, totalWeight);
+        }
+        [TestMethod]
+        public void GetWay_ToDisconnectedComponent_ShouldReturnNull()
+        {
+            graph.Dijkstra("A");
+            var path = graph.GetWay("A", "E", out int distance);
+
+            Assert.IsNull(path);
+            Assert.IsTrue(distance >= 1000000, "Расстояние до недостижимой вершины должно быть INF");
+        }
+        [TestMethod]
+        public void Dijkstra_InSmallComponent_ShouldWork()
+        {
+            // Путь E -> F с весом 40
+            graph.Dijkstra("E");
+            graph.GetWay("E", "F", out int distance);
+
+            Assert.AreEqual(40, distance);
         }
     }
 

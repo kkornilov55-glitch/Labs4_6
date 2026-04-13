@@ -291,7 +291,7 @@ var assemblies = [
     "name": "ClassLibrary",
     "classes": [
       { "name": "ClassLibrary.Edge", "rp": "ClassLibrary_Edge.html", "cl": 5, "ucl": 0, "cal": 5, "tl": 18, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "ClassLibrary.Graph", "rp": "ClassLibrary_Graph.html", "cl": 122, "ucl": 2, "cal": 124, "tl": 207, "cb": 46, "tb": 52, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "ClassLibrary.Graph", "rp": "ClassLibrary_Graph.html", "cl": 187, "ucl": 9, "cal": 196, "tl": 305, "cb": 80, "tb": 90, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
     ]},
 ];
 
@@ -300,9 +300,23 @@ var metrics = [{ "name": "Crap Score", "abbreviation": "crp", "explanationUrl": 
 var historicCoverageExecutionTimes = [];
 
 var riskHotspotMetrics = [
+      { "name": "Crap Score", "explanationUrl": "https://googletesting.blogspot.de/2011/02/this-code-is-crap.html" },
+      { "name": "Cyclomatic complexity", "explanationUrl": "https://en.wikipedia.org/wiki/Cyclomatic_complexity" },
 ];
 
 var riskHotspots = [
+  {
+    "assembly": "ClassLibrary", "class": "ClassLibrary.Graph", "reportPath": "ClassLibrary_Graph.html", "methodName": "Dijkstra(System.String)", "methodShortName": "Dijkstra(...)", "fileIndex": 0, "line": 249,
+    "metrics": [
+      { "value": 20, "exceeded": false },
+      { "value": 20, "exceeded": true },
+    ]},
+  {
+    "assembly": "ClassLibrary", "class": "ClassLibrary.Graph", "reportPath": "ClassLibrary_Graph.html", "methodName": "GetWay(System.String,System.String,System.Int32&)", "methodShortName": "GetWay(...)", "fileIndex": 0, "line": 181,
+    "metrics": [
+      { "value": 19, "exceeded": false },
+      { "value": 18, "exceeded": true },
+    ]},
 ];
 
 var branchCoverageAvailable = true;
