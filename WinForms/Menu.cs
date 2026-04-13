@@ -20,7 +20,27 @@ namespace WinForms
         {
             try
             {
-                G.ReadGraph();
+                //G.ReadGraph();
+                var OFD = new OpenFileDialog
+                {
+                    Title = "Выберите текстовый файл",
+                    Filter = "Текстовые файлы (*.txt)|*.txt",
+                    FilterIndex = 1,
+                    RestoreDirectory = true,
+                    CheckFileExists = true
+                };
+                if (OFD.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = OFD.FileName;
+                    string ext = Path.GetExtension(filePath);
+                    if (ext != ".txt")
+                    {
+                        MessageBox.Show("Чтение расширения выбранного файла не поддерживается!", "Неудача!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    G.ReadGraph(filePath);
+                    MessageBox.Show($"Выбран файл: {FileName(filePath)}", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch
             {
@@ -28,12 +48,22 @@ namespace WinForms
                 return;
             }
 
-            MessageBox.Show("Граф успешно прочитан!", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //MessageBox.Show("Граф успешно прочитан!", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
             ReadGraph_GB.Location = new Point(6, 109);
             DFS_GB.Visible = true;
             BFS_GB.Visible = true;
             Dijekstra_GB.Visible = true;
             MOD_GB.Visible = true;
+        }
+        private string FileName(string PathFile)
+        {
+            List<char> name = new List<char>();
+            for (int i = PathFile.Length - 1; i >= 0; i--)
+            {
+                if (PathFile[i] == '\\') break;
+                name.Insert(0, PathFile[i]);
+            }
+            return string.Join("",name);
         }
         private void DFS_B_Click(object sender, EventArgs e)
         {

@@ -12,9 +12,10 @@
         /// <summary>
         /// Метод для чтения графа из файла, необходим перед началом работы с классом.
         /// </summary>
-        public void ReadGraph()
+        public void ReadGraph(string filePath)
         {
-            StreamReader F = new StreamReader("river_graph.txt");
+            //if (filePath.ToLower() != "*.txt") throw new InvalidDataException("Выбран не текстовый файл");
+            StreamReader F = new StreamReader(filePath);
 
             //Считываем граф по строкам
             string currentString;
