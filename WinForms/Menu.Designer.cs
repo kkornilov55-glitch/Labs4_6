@@ -30,7 +30,6 @@
         {
             label1 = new Label();
             ReadGraphB = new Button();
-            label2 = new Label();
             TaskInfo_B = new Button();
             ReadGraph_GB = new GroupBox();
             panel1 = new Panel();
@@ -45,13 +44,20 @@
             Dijkstra_B = new Button();
             label5 = new Label();
             MOD_GB = new GroupBox();
-            button4 = new Button();
+            MOD_B = new Button();
             label6 = new Label();
+            ArticulationPoints_GB = new GroupBox();
+            ArticulationPoints_B = new Button();
+            label2 = new Label();
+            label7 = new Label();
+            panel3 = new Panel();
+            panel4 = new Panel();
             ReadGraph_GB.SuspendLayout();
             DFS_GB.SuspendLayout();
             BFS_GB.SuspendLayout();
             Dijekstra_GB.SuspendLayout();
             MOD_GB.SuspendLayout();
+            ArticulationPoints_GB.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -62,7 +68,7 @@
             label1.ForeColor = Color.WhiteSmoke;
             label1.Location = new Point(0, 0);
             label1.Name = "label1";
-            label1.Size = new Size(696, 69);
+            label1.Size = new Size(899, 69);
             label1.TabIndex = 0;
             label1.Text = "Меню управления графом";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -71,24 +77,12 @@
             // 
             ReadGraphB.BackgroundImage = Properties.Resources.ReadGraphB;
             ReadGraphB.BackgroundImageLayout = ImageLayout.Zoom;
-            ReadGraphB.Location = new Point(6, 15);
+            ReadGraphB.Location = new Point(6, 16);
             ReadGraphB.Name = "ReadGraphB";
             ReadGraphB.Size = new Size(125, 125);
             ReadGraphB.TabIndex = 1;
             ReadGraphB.UseVisualStyleBackColor = true;
             ReadGraphB.Click += ReadGraphB_Click;
-            // 
-            // label2
-            // 
-            label2.BackColor = Color.Transparent;
-            label2.Font = new Font("MS Reference Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label2.ForeColor = SystemColors.ButtonFace;
-            label2.Location = new Point(6, 143);
-            label2.Name = "label2";
-            label2.Size = new Size(125, 46);
-            label2.TabIndex = 6;
-            label2.Text = "Загрузить\r\nграф\r\n";
-            label2.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // TaskInfo_B
             // 
@@ -96,21 +90,21 @@
             TaskInfo_B.BackgroundImage = Properties.Resources.free_icon_open_book_171322;
             TaskInfo_B.BackgroundImageLayout = ImageLayout.Zoom;
             TaskInfo_B.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
-            TaskInfo_B.Location = new Point(651, 335);
+            TaskInfo_B.Location = new Point(23, 444);
             TaskInfo_B.Name = "TaskInfo_B";
             TaskInfo_B.Size = new Size(39, 34);
             TaskInfo_B.TabIndex = 11;
             TaskInfo_B.UseVisualStyleBackColor = false;
+            TaskInfo_B.Visible = false;
             TaskInfo_B.Click += TaskInfo_B_Click;
             // 
             // ReadGraph_GB
             // 
             ReadGraph_GB.BackColor = Color.Transparent;
             ReadGraph_GB.Controls.Add(ReadGraphB);
-            ReadGraph_GB.Controls.Add(label2);
-            ReadGraph_GB.Location = new Point(6, 109);
+            ReadGraph_GB.Location = new Point(23, 199);
             ReadGraph_GB.Name = "ReadGraph_GB";
-            ReadGraph_GB.Size = new Size(136, 191);
+            ReadGraph_GB.Size = new Size(136, 149);
             ReadGraph_GB.TabIndex = 12;
             ReadGraph_GB.TabStop = false;
             // 
@@ -123,7 +117,7 @@
             // 
             // panel2
             // 
-            panel2.Location = new Point(573, 30);
+            panel2.Location = new Point(770, 30);
             panel2.Name = "panel2";
             panel2.Size = new Size(55, 10);
             panel2.TabIndex = 14;
@@ -133,9 +127,9 @@
             DFS_GB.BackColor = Color.Transparent;
             DFS_GB.Controls.Add(DFS_B);
             DFS_GB.Controls.Add(label3);
-            DFS_GB.Location = new Point(143, 109);
+            DFS_GB.Location = new Point(569, 199);
             DFS_GB.Name = "DFS_GB";
-            DFS_GB.Size = new Size(136, 191);
+            DFS_GB.Size = new Size(136, 189);
             DFS_GB.TabIndex = 15;
             DFS_GB.TabStop = false;
             DFS_GB.Visible = false;
@@ -156,7 +150,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("MS Reference Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
             label3.ForeColor = SystemColors.ButtonFace;
-            label3.Location = new Point(6, 143);
+            label3.Location = new Point(6, 140);
             label3.Name = "label3";
             label3.Size = new Size(125, 46);
             label3.TabIndex = 6;
@@ -168,7 +162,7 @@
             BFS_GB.BackColor = Color.Transparent;
             BFS_GB.Controls.Add(BFS_B);
             BFS_GB.Controls.Add(label4);
-            BFS_GB.Location = new Point(280, 109);
+            BFS_GB.Location = new Point(270, 87);
             BFS_GB.Name = "BFS_GB";
             BFS_GB.Size = new Size(136, 191);
             BFS_GB.TabIndex = 16;
@@ -179,7 +173,7 @@
             // 
             BFS_B.BackgroundImage = Properties.Resources.BFS_B;
             BFS_B.BackgroundImageLayout = ImageLayout.Zoom;
-            BFS_B.Location = new Point(6, 15);
+            BFS_B.Location = new Point(5, 60);
             BFS_B.Name = "BFS_B";
             BFS_B.Size = new Size(125, 125);
             BFS_B.TabIndex = 1;
@@ -191,7 +185,7 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("MS Reference Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
             label4.ForeColor = SystemColors.ButtonFace;
-            label4.Location = new Point(6, 143);
+            label4.Location = new Point(5, 15);
             label4.Name = "label4";
             label4.Size = new Size(125, 46);
             label4.TabIndex = 6;
@@ -203,9 +197,9 @@
             Dijekstra_GB.BackColor = Color.Transparent;
             Dijekstra_GB.Controls.Add(Dijkstra_B);
             Dijekstra_GB.Controls.Add(label5);
-            Dijekstra_GB.Location = new Point(417, 109);
+            Dijekstra_GB.Location = new Point(270, 284);
             Dijekstra_GB.Name = "Dijekstra_GB";
-            Dijekstra_GB.Size = new Size(136, 191);
+            Dijekstra_GB.Size = new Size(136, 189);
             Dijekstra_GB.TabIndex = 17;
             Dijekstra_GB.TabStop = false;
             Dijekstra_GB.Visible = false;
@@ -236,44 +230,108 @@
             // MOD_GB
             // 
             MOD_GB.BackColor = Color.Transparent;
-            MOD_GB.Controls.Add(button4);
+            MOD_GB.Controls.Add(MOD_B);
             MOD_GB.Controls.Add(label6);
-            MOD_GB.Location = new Point(554, 109);
+            MOD_GB.Location = new Point(427, 199);
             MOD_GB.Name = "MOD_GB";
-            MOD_GB.Size = new Size(136, 191);
+            MOD_GB.Size = new Size(136, 188);
             MOD_GB.TabIndex = 18;
             MOD_GB.TabStop = false;
             MOD_GB.Visible = false;
             // 
-            // button4
+            // MOD_B
             // 
-            button4.BackgroundImage = Properties.Resources.MOD_B;
-            button4.BackgroundImageLayout = ImageLayout.Zoom;
-            button4.Location = new Point(6, 15);
-            button4.Name = "button4";
-            button4.Size = new Size(125, 125);
-            button4.TabIndex = 1;
-            button4.UseVisualStyleBackColor = true;
+            MOD_B.BackgroundImage = Properties.Resources.MOD_B;
+            MOD_B.BackgroundImageLayout = ImageLayout.Zoom;
+            MOD_B.Location = new Point(6, 15);
+            MOD_B.Name = "MOD_B";
+            MOD_B.Size = new Size(125, 125);
+            MOD_B.TabIndex = 1;
+            MOD_B.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("MS Reference Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
             label6.ForeColor = SystemColors.ButtonFace;
-            label6.Location = new Point(6, 143);
+            label6.Location = new Point(5, 142);
             label6.Name = "label6";
             label6.Size = new Size(125, 46);
             label6.TabIndex = 6;
             label6.Text = "МОД";
             label6.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // MenuF
+            // ArticulationPoints_GB
+            // 
+            ArticulationPoints_GB.BackColor = Color.Transparent;
+            ArticulationPoints_GB.Controls.Add(ArticulationPoints_B);
+            ArticulationPoints_GB.Controls.Add(label2);
+            ArticulationPoints_GB.Location = new Point(711, 199);
+            ArticulationPoints_GB.Name = "ArticulationPoints_GB";
+            ArticulationPoints_GB.Size = new Size(136, 189);
+            ArticulationPoints_GB.TabIndex = 19;
+            ArticulationPoints_GB.TabStop = false;
+            ArticulationPoints_GB.Visible = false;
+            // 
+            // ArticulationPoints_B
+            // 
+            ArticulationPoints_B.BackgroundImage = Properties.Resources.Точки_сочленения_button;
+            ArticulationPoints_B.BackgroundImageLayout = ImageLayout.Zoom;
+            ArticulationPoints_B.Location = new Point(6, 15);
+            ArticulationPoints_B.Name = "ArticulationPoints_B";
+            ArticulationPoints_B.Size = new Size(125, 125);
+            ArticulationPoints_B.TabIndex = 1;
+            ArticulationPoints_B.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("MS Reference Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label2.ForeColor = SystemColors.ButtonFace;
+            label2.Location = new Point(5, 142);
+            label2.Name = "label2";
+            label2.Size = new Size(125, 46);
+            label2.TabIndex = 6;
+            label2.Text = "Точки сочленения";
+            label2.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label7
+            // 
+            label7.BackColor = Color.Transparent;
+            label7.Font = new Font("MS Reference Sans Serif", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label7.ForeColor = Color.WhiteSmoke;
+            label7.Location = new Point(427, 127);
+            label7.Name = "label7";
+            label7.Size = new Size(420, 69);
+            label7.TabIndex = 20;
+            label7.Text = "Свойства";
+            label7.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // panel3
+            // 
+            panel3.Location = new Point(548, 155);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(15, 14);
+            panel3.TabIndex = 21;
+            // 
+            // panel4
+            // 
+            panel4.Location = new Point(711, 155);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(15, 14);
+            panel4.TabIndex = 22;
+            // 
+            // Menu_F
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.Gemini_Generated_Image_1qlwtx1qlwtx1qlw_1_;
             BackgroundImageLayout = ImageLayout.Zoom;
-            ClientSize = new Size(696, 379);
+            ClientSize = new Size(899, 490);
+            Controls.Add(panel4);
+            Controls.Add(panel3);
+            Controls.Add(label7);
+            Controls.Add(ArticulationPoints_GB);
             Controls.Add(MOD_GB);
             Controls.Add(Dijekstra_GB);
             Controls.Add(BFS_GB);
@@ -286,13 +344,14 @@
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
-            Name = "MenuF";
+            Name = "Menu_F";
             Text = "Меню";
             ReadGraph_GB.ResumeLayout(false);
             DFS_GB.ResumeLayout(false);
             BFS_GB.ResumeLayout(false);
             Dijekstra_GB.ResumeLayout(false);
             MOD_GB.ResumeLayout(false);
+            ArticulationPoints_GB.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -300,7 +359,6 @@
 
         private Label label1;
         private Button ReadGraphB;
-        private Label label2;
         private Button TaskInfo_B;
         private GroupBox ReadGraph_GB;
         private Panel panel1;
@@ -315,7 +373,13 @@
         private Button Dijkstra_B;
         private Label label5;
         private GroupBox MOD_GB;
-        private Button button4;
+        private Button MOD_B;
         private Label label6;
+        private GroupBox ArticulationPoints_GB;
+        private Button ArticulationPoints_B;
+        private Label label2;
+        private Label label7;
+        private Panel panel3;
+        private Panel panel4;
     }
 }

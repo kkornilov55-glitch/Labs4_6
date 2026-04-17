@@ -13,7 +13,7 @@ namespace WinForms
         public Menu_F()
         {
             InitializeComponent();
-            ReadGraph_GB.Location = new Point(280, 109);
+            //ReadGraph_GB.Location = new Point(280, 109);
         }
 
         private void ReadGraphB_Click(object sender, EventArgs e)
@@ -49,11 +49,13 @@ namespace WinForms
             }
 
             //MessageBox.Show("Граф успешно прочитан!", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            ReadGraph_GB.Location = new Point(6, 109);
+            ReadGraph_GB.Location = new Point(23, 199);
             DFS_GB.Visible = true;
             BFS_GB.Visible = true;
             Dijekstra_GB.Visible = true;
             MOD_GB.Visible = true;
+            TaskInfo_B.Visible = true;
+            ArticulationPoints_GB.Visible = true;
         }
         private string FileName(string PathFile)
         {
