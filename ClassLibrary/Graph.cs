@@ -355,5 +355,52 @@
                 if (!ap.Contains(u)) ap.Add(u);
             }
         }
+        /// <summary>
+        /// Построение минимального остовного дерева алгоритмом Прима
+        /// </summary>
+        /// <returns>Кортеж: (список рёбер МОД, суммарный вес дерева)</returns>
+        public (List<Edge> mstEdges, int totalWeight) PrimMST()
+        {
+            if (adjacencyList.Count == 0)
+                return (new List<Edge>(), 0);
+
+            var mstEdges = new List<Edge>();
+            var visited = new HashSet<string>();
+            var pq = new PriorityQueue<(string from, string to, int weight), int>();
+
+            int totalWeight = 0;
+            string start = adjacencyList.Keys.First(); // Начинаем с любой вершины
+            visited.Add(start);
+
+            // Добавляем все рёбра из стартовой вершины в приоритетную очередь
+            foreach (var edge in adjacencyList[start])
+            {
+                pq.Enqueue((start, edge.To, edge.Weight), edge.Weight);
+            }
+
+            while (pq.Count > 0 && visited.Count < adjacencyList.Count)
+            {
+                var (from, to, weight) = pq.Dequeue();
+
+                // Пропускаем рёбра, ведущие в уже посещённые вершины
+                if (visited.Contains(to)) continue;
+
+                // Добавляем вершину и ребро в МОД
+                visited.Add(to);
+                mstEdges.Add(new Edge(to, weight)); // Храним конечную вершину и вес
+                totalWeight += weight;
+
+                // Добавляем новые рёбра из текущей вершины
+                foreach (var edge in adjacencyList[to])
+                {
+                    if (!visited.Contains(edge.To))
+                    {
+                        pq.Enqueue((to, edge.To, edge.Weight), edge.Weight);
+                    }
+                }
+            }
+
+            return (mstEdges, totalWeight);
+        }
     }
 }
