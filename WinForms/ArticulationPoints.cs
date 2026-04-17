@@ -1,4 +1,5 @@
-﻿using ClassLibrary;
+﻿using System.Diagnostics;
+using ClassLibrary;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,7 +24,11 @@ namespace WinForms
 
         private void StartArticulationPoints_B_Click(object sender, EventArgs e)
         {
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
             var points = G.FindArticulationPoints();
+            timer.Stop();
+            MessageBox.Show($"Время выполнения алгоритма: {timer.ElapsedMilliseconds} мс");
 
             if (points.Count == 0)
                 Result_L.Text = "Граф не имеет точек сочленения";

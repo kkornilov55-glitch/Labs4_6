@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -30,7 +31,11 @@ namespace WinForms
         private void StartDFS_B_Click(object sender, EventArgs e)
         {
             var selectedStartTown = Towns_CB.SelectedItem?.ToString();
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
             var way = G.DFS(selectedStartTown);
+            timer.Stop();
+            MessageBox.Show($"Время выполнения алгоритма: {timer.ElapsedMilliseconds} мс");
 
             string wayToPrint = string.Empty;
             foreach (var node in way) wayToPrint += node + ", ";

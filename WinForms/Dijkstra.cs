@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -50,16 +51,16 @@ namespace WinForms
         {
             var from = From_CB.SelectedItem?.ToString();
             var to = To_CB.SelectedItem?.ToString();
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
             G.Dijkstra(from);
+            timer.Stop();
+            MessageBox.Show($"Время выполнения алгоритма: {timer.ElapsedMilliseconds} мс");
+
             try
             {
                 List<string> way = G.GetWay(from, to, out int wayLength);
-                //if (way == null)
-                //{
-                //    Dijkstra_Result_L.Text = from;
-                //    WayLength_L.Text = "0 км";
-                //    return;
-                //}
+
                 Dijkstra_Result_L.Text = string.Join(" -> ", way);
                 WayLength_L.Text = $"{wayLength} км";
             }

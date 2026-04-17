@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -25,7 +26,11 @@ namespace WinForms
         {
             try
             {
+                Stopwatch timer = new Stopwatch();
+                timer.Start();
                 var (edges, totalWeight) = G.PrimMST();
+                timer.Stop();
+                MessageBox.Show($"Время выполнения алгоритма: {timer.ElapsedMilliseconds} мс");
 
                 StringBuilder result = new StringBuilder();
                 result.AppendLine($"Суммарый вес дерева: {totalWeight} км\n");

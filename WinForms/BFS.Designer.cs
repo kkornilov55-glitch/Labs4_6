@@ -113,7 +113,7 @@
             StartDFS_B.TabIndex = 24;
             StartDFS_B.Text = "Старт";
             StartDFS_B.UseVisualStyleBackColor = true;
-            StartDFS_B.Click += StartDFS_B_Click;
+            StartDFS_B.Click += StartBFS_B_Click;
             // 
             // ComponentsShow_B
             // 
