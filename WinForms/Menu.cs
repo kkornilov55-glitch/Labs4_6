@@ -9,6 +9,8 @@ namespace WinForms
         private Form BFS_F;
         private Form Info_F;
         private Form Dijkstra_F;
+        private Form MOD_F;
+        private Form ArticulationPoints_F;
 
         public Menu_F()
         {
@@ -56,6 +58,7 @@ namespace WinForms
             MOD_GB.Visible = true;
             TaskInfo_B.Visible = true;
             ArticulationPoints_GB.Visible = true;
+            label7.Visible = true;
         }
         private string FileName(string PathFile)
         {
@@ -65,7 +68,7 @@ namespace WinForms
                 if (PathFile[i] == '\\') break;
                 name.Insert(0, PathFile[i]);
             }
-            return string.Join("",name);
+            return string.Join("", name);
         }
         private void DFS_B_Click(object sender, EventArgs e)
         {
@@ -105,12 +108,24 @@ namespace WinForms
         {
             if (G == null) return;
 
-            if (Dijkstra_F == null) Dijkstra_F = new Dijkstra_F(this, G);
-            Dijkstra_F.StartPosition = FormStartPosition.Manual;
-            Dijkstra_F.Location = this.Location;
+            if (MOD_F == null) MOD_F = new MOD_F(this, G);
+            MOD_F.StartPosition = FormStartPosition.Manual;
+            MOD_F.Location = this.Location;
 
             this.Hide();
-            Dijkstra_F.Show();
+            MOD_F.Show();
+        }
+
+        private void MOD_B_Click(object sender, EventArgs e)
+        {
+            if (G == null) return;
+
+            if (MOD_F == null) MOD_F = new MOD_F(this, G);
+            MOD_F.StartPosition = FormStartPosition.Manual;
+            MOD_F.Location = this.Location;
+
+            this.Hide();
+            MOD_F.Show();
         }
     }
 }

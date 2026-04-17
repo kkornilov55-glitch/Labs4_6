@@ -33,7 +33,6 @@
             TaskInfo_B = new Button();
             ReadGraph_GB = new GroupBox();
             panel1 = new Panel();
-            panel2 = new Panel();
             DFS_GB = new GroupBox();
             DFS_B = new Button();
             label3 = new Label();
@@ -50,8 +49,7 @@
             ArticulationPoints_B = new Button();
             label2 = new Label();
             label7 = new Label();
-            panel3 = new Panel();
-            panel4 = new Panel();
+            panel2 = new Panel();
             ReadGraph_GB.SuspendLayout();
             DFS_GB.SuspendLayout();
             BFS_GB.SuspendLayout();
@@ -90,9 +88,9 @@
             TaskInfo_B.BackgroundImage = Properties.Resources.free_icon_open_book_171322;
             TaskInfo_B.BackgroundImageLayout = ImageLayout.Zoom;
             TaskInfo_B.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
-            TaskInfo_B.Location = new Point(23, 444);
+            TaskInfo_B.Location = new Point(828, 423);
             TaskInfo_B.Name = "TaskInfo_B";
-            TaskInfo_B.Size = new Size(39, 34);
+            TaskInfo_B.Size = new Size(59, 55);
             TaskInfo_B.TabIndex = 11;
             TaskInfo_B.UseVisualStyleBackColor = false;
             TaskInfo_B.Visible = false;
@@ -110,24 +108,17 @@
             // 
             // panel1
             // 
-            panel1.Location = new Point(58, 30);
+            panel1.Location = new Point(0, 30);
             panel1.Name = "panel1";
-            panel1.Size = new Size(55, 10);
+            panel1.Size = new Size(159, 10);
             panel1.TabIndex = 13;
-            // 
-            // panel2
-            // 
-            panel2.Location = new Point(770, 30);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(55, 10);
-            panel2.TabIndex = 14;
             // 
             // DFS_GB
             // 
             DFS_GB.BackColor = Color.Transparent;
             DFS_GB.Controls.Add(DFS_B);
             DFS_GB.Controls.Add(label3);
-            DFS_GB.Location = new Point(569, 199);
+            DFS_GB.Location = new Point(546, 164);
             DFS_GB.Name = "DFS_GB";
             DFS_GB.Size = new Size(136, 189);
             DFS_GB.TabIndex = 15;
@@ -162,7 +153,7 @@
             BFS_GB.BackColor = Color.Transparent;
             BFS_GB.Controls.Add(BFS_B);
             BFS_GB.Controls.Add(label4);
-            BFS_GB.Location = new Point(270, 87);
+            BFS_GB.Location = new Point(214, 83);
             BFS_GB.Name = "BFS_GB";
             BFS_GB.Size = new Size(136, 191);
             BFS_GB.TabIndex = 16;
@@ -197,7 +188,7 @@
             Dijekstra_GB.BackColor = Color.Transparent;
             Dijekstra_GB.Controls.Add(Dijkstra_B);
             Dijekstra_GB.Controls.Add(label5);
-            Dijekstra_GB.Location = new Point(270, 284);
+            Dijekstra_GB.Location = new Point(214, 280);
             Dijekstra_GB.Name = "Dijekstra_GB";
             Dijekstra_GB.Size = new Size(136, 189);
             Dijekstra_GB.TabIndex = 17;
@@ -232,7 +223,7 @@
             MOD_GB.BackColor = Color.Transparent;
             MOD_GB.Controls.Add(MOD_B);
             MOD_GB.Controls.Add(label6);
-            MOD_GB.Location = new Point(427, 199);
+            MOD_GB.Location = new Point(404, 164);
             MOD_GB.Name = "MOD_GB";
             MOD_GB.Size = new Size(136, 188);
             MOD_GB.TabIndex = 18;
@@ -248,6 +239,7 @@
             MOD_B.Size = new Size(125, 125);
             MOD_B.TabIndex = 1;
             MOD_B.UseVisualStyleBackColor = true;
+            MOD_B.Click += MOD_B_Click;
             // 
             // label6
             // 
@@ -266,7 +258,7 @@
             ArticulationPoints_GB.BackColor = Color.Transparent;
             ArticulationPoints_GB.Controls.Add(ArticulationPoints_B);
             ArticulationPoints_GB.Controls.Add(label2);
-            ArticulationPoints_GB.Location = new Point(711, 199);
+            ArticulationPoints_GB.Location = new Point(688, 164);
             ArticulationPoints_GB.Name = "ArticulationPoints_GB";
             ArticulationPoints_GB.Size = new Size(136, 189);
             ArticulationPoints_GB.TabIndex = 19;
@@ -300,26 +292,20 @@
             label7.BackColor = Color.Transparent;
             label7.Font = new Font("MS Reference Sans Serif", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
             label7.ForeColor = Color.WhiteSmoke;
-            label7.Location = new Point(427, 127);
+            label7.Location = new Point(404, 92);
             label7.Name = "label7";
             label7.Size = new Size(420, 69);
             label7.TabIndex = 20;
             label7.Text = "Свойства";
             label7.TextAlign = ContentAlignment.MiddleCenter;
+            label7.Visible = false;
             // 
-            // panel3
+            // panel2
             // 
-            panel3.Location = new Point(548, 155);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(15, 14);
-            panel3.TabIndex = 21;
-            // 
-            // panel4
-            // 
-            panel4.Location = new Point(711, 155);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(15, 14);
-            panel4.TabIndex = 22;
+            panel2.Location = new Point(740, 30);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(159, 10);
+            panel2.TabIndex = 21;
             // 
             // Menu_F
             // 
@@ -328,15 +314,13 @@
             BackgroundImage = Properties.Resources.Gemini_Generated_Image_1qlwtx1qlwtx1qlw_1_;
             BackgroundImageLayout = ImageLayout.Zoom;
             ClientSize = new Size(899, 490);
-            Controls.Add(panel4);
-            Controls.Add(panel3);
+            Controls.Add(panel2);
             Controls.Add(label7);
             Controls.Add(ArticulationPoints_GB);
             Controls.Add(MOD_GB);
             Controls.Add(Dijekstra_GB);
             Controls.Add(BFS_GB);
             Controls.Add(DFS_GB);
-            Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(ReadGraph_GB);
             Controls.Add(TaskInfo_B);
@@ -362,7 +346,6 @@
         private Button TaskInfo_B;
         private GroupBox ReadGraph_GB;
         private Panel panel1;
-        private Panel panel2;
         private GroupBox DFS_GB;
         private Button DFS_B;
         private Label label3;
@@ -379,7 +362,6 @@
         private Button ArticulationPoints_B;
         private Label label2;
         private Label label7;
-        private Panel panel3;
-        private Panel panel4;
+        private Panel panel2;
     }
 }

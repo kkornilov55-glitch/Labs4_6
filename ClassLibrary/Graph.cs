@@ -358,45 +358,42 @@
         /// <summary>
         /// Построение минимального остовного дерева алгоритмом Прима
         /// </summary>
-        /// <returns>Кортеж: (список рёбер МОД, суммарный вес дерева)</returns>
-        public (List<Edge> mstEdges, int totalWeight) PrimMST()
+        /// <returns>Кортеж: (список рёбер МОД с указанием обеих вершин, суммарный вес)</returns>
+        public (List<(string From, string To, int Weight)> mstEdges, int totalWeight) PrimMST()
         {
             if (adjacencyList.Count == 0)
-                return (new List<Edge>(), 0);
+                return (new List<(string, string, int)>(), 0);
 
-            var mstEdges = new List<Edge>();
+            var mstEdges = new List<(string, string, int)>();
             var visited = new HashSet<string>();
+            // В очереди храним: (откуда, куда, вес)
             var pq = new PriorityQueue<(string from, string to, int weight), int>();
 
             int totalWeight = 0;
-            string start = adjacencyList.Keys.First(); // Начинаем с любой вершины
+            string start = adjacencyList.Keys.First(); // Начинаем с первой вершины
             visited.Add(start);
 
-            // Добавляем все рёбра из стартовой вершины в приоритетную очередь
+            // Добавляем рёбра из стартовой вершины
             foreach (var edge in adjacencyList[start])
-            {
                 pq.Enqueue((start, edge.To, edge.Weight), edge.Weight);
-            }
 
             while (pq.Count > 0 && visited.Count < adjacencyList.Count)
             {
                 var (from, to, weight) = pq.Dequeue();
 
-                // Пропускаем рёбра, ведущие в уже посещённые вершины
+                // Пропускаем рёбра в уже посещённые вершины
                 if (visited.Contains(to)) continue;
 
-                // Добавляем вершину и ребро в МОД
+                // ✅ Фиксируем ребро с ОБЕИМИ вершинами
                 visited.Add(to);
-                mstEdges.Add(new Edge(to, weight)); // Храним конечную вершину и вес
+                mstEdges.Add((from, to, weight));
                 totalWeight += weight;
 
                 // Добавляем новые рёбра из текущей вершины
                 foreach (var edge in adjacencyList[to])
                 {
                     if (!visited.Contains(edge.To))
-                    {
                         pq.Enqueue((to, edge.To, edge.Weight), edge.Weight);
-                    }
                 }
             }
 
