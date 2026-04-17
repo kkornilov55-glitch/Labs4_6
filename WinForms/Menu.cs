@@ -108,12 +108,12 @@ namespace WinForms
         {
             if (G == null) return;
 
-            if (MOD_F == null) MOD_F = new MOD_F(this, G);
-            MOD_F.StartPosition = FormStartPosition.Manual;
-            MOD_F.Location = this.Location;
+            if (Dijkstra_F == null) Dijkstra_F = new Dijkstra_F(this, G);
+            Dijkstra_F.StartPosition = FormStartPosition.Manual;
+            Dijkstra_F.Location = this.Location;
 
             this.Hide();
-            MOD_F.Show();
+            Dijkstra_F.Show();
         }
 
         private void MOD_B_Click(object sender, EventArgs e)
@@ -126,6 +126,18 @@ namespace WinForms
 
             this.Hide();
             MOD_F.Show();
+        }
+
+        private void ArticulationPoints_B_Click(object sender, EventArgs e)
+        {
+            if (G == null) return;
+
+            if (ArticulationPoints_F == null) ArticulationPoints_F = new ArticulationPoints_F(this, G);
+            ArticulationPoints_F.StartPosition = FormStartPosition.Manual;
+            ArticulationPoints_F.Location = this.Location;
+
+            this.Hide();
+            ArticulationPoints_F.Show();
         }
     }
 }

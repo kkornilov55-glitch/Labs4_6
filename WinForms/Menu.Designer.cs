@@ -274,6 +274,7 @@
             ArticulationPoints_B.Size = new Size(125, 125);
             ArticulationPoints_B.TabIndex = 1;
             ArticulationPoints_B.UseVisualStyleBackColor = true;
+            ArticulationPoints_B.Click += ArticulationPoints_B_Click;
             // 
             // label2
             // 
