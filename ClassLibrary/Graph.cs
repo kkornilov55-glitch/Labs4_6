@@ -290,5 +290,70 @@
                 }
             }
         }
+        /// <summary>
+        /// Поиск всех точек сочленения в графе (вершин, удаление которых делает граф несвязным)
+        /// </summary>
+        /// <returns>Список городов-точек сочленения</returns>
+        public List<string> FindArticulationPoints()
+        {
+            List<string> articulationPoints = new List<string>();
+            Dictionary<string, int> tin = new Dictionary<string, int>();      // Время входа
+            Dictionary<string, int> low = new Dictionary<string, int>();      // Минимальное достижимое время
+            Dictionary<string, string> parent = new Dictionary<string, string>();
+            int timer = 0;
+
+            // Обход всех вершин (на случай несвязного графа)
+            foreach (var vertex in adjacencyList.Keys)
+            {
+                if (!tin.ContainsKey(vertex))
+                {
+                    DFS_Articulation(vertex, null, ref timer, tin, low, parent, articulationPoints);
+                }
+            }
+
+            return articulationPoints;
+        }
+
+        private void DFS_Articulation(string u, string p, ref int timer,
+                                      Dictionary<string, int> tin, Dictionary<string, int> low,
+                                      Dictionary<string, string> parentDict, List<string> ap)
+        {
+            tin[u] = low[u] = timer++;
+            int children = 0;
+
+            foreach (var edge in adjacencyList[u])
+            {
+                string v = edge.To;
+
+                if (v == p) continue; // Пропускаем ребро к родителю
+
+                if (tin.ContainsKey(v))
+                {
+                    // Обратное ребро (back edge)
+                    low[u] = Math.Min(low[u], tin[v]);
+                }
+                else
+                {
+                    children++;
+                    parentDict[v] = u;
+                    DFS_Articulation(v, u, ref timer, tin, low, parentDict, ap);
+
+                    // Обновляем low после возврата из рекурсии
+                    low[u] = Math.Min(low[u], low[v]);
+
+                    // Условие точки сочленения для НЕ корня
+                    if (p != null && low[v] >= tin[u])
+                    {
+                        if (!ap.Contains(u)) ap.Add(u);
+                    }
+                }
+            }
+
+            // Условие для корня DFS-дерева
+            if (p == null && children > 1)
+            {
+                if (!ap.Contains(u)) ap.Add(u);
+            }
+        }
     }
 }
