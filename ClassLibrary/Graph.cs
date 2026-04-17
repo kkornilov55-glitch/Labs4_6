@@ -258,48 +258,37 @@
                 Visited[V] = false;
             }
             Distance[startV] = 0;
+            parent[startV] = null;
 
-            int MinD;
-            do
+            var pq = new PriorityQueue<string, int>();
+
+            pq.Enqueue(startV, 0);
+
+            while (pq.Count > 0)
             {
-                MinD = INF;
-                string MinV = null;
-                foreach (string V in adjacencyList.Keys)
-                {
-                    if (Distance[V] < MinD && !Visited[V])
-                    {
-                        MinD = Distance[V];
-                        MinV = V;
-                    }
-                }
-                if (MinV == null) break;
+
+                string MinV = pq.Dequeue();
+                //Если наткнулись на старую вершину, пропускаем так как она с лучшим путём уже обработана
+                if (Visited[MinV]) continue;
+                Visited[MinV] = true;
+
                 foreach (Edge E in adjacencyList[MinV])
                 {
-                    if (!Visited[E.To])
+                    string neighbor = E.To;
+
+                    if (!Visited[neighbor])
                     {
                         int newDist = Distance[MinV] + E.Weight;
-                        if (newDist < Distance[E.To])
+                        if (newDist < Distance[neighbor])
                         {
-                            Distance[E.To] = newDist;
-                            parent[E.To] = MinV;
+                            Distance[neighbor] = newDist;
+                            parent[neighbor] = MinV;
+
+                            pq.Enqueue(neighbor, newDist);
                         }
                     }
                 }
-                Visited[MinV] = true;
-            } while (MinD < INF);
+            }
         }
-        //public List<List<string>> GetWays(string startV)
-        //{
-        //    var ways = new List<List<string>>();
-
-        //    foreach (string V in adjacencyList.Keys)
-        //    {
-        //        if (startV == V) continue;
-        //        ways.Add(GetWay(startV, V));
-        //    }
-
-        //    return ways;
-        //}
-
     }
 }

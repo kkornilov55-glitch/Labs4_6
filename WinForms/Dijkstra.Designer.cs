@@ -1,6 +1,6 @@
 ﻿namespace WinForms
 {
-    partial class DijkstraF
+    partial class Dijkstra_F
     {
         /// <summary>
         /// Required designer variable.

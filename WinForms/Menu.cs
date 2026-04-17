@@ -103,7 +103,7 @@ namespace WinForms
         {
             if (G == null) return;
 
-            if (Dijkstra_F == null) Dijkstra_F = new DijkstraF(this, G);
+            if (Dijkstra_F == null) Dijkstra_F = new Dijkstra_F(this, G);
             Dijkstra_F.StartPosition = FormStartPosition.Manual;
             Dijkstra_F.Location = this.Location;
 

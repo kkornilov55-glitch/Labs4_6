@@ -11,12 +11,12 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WinForms
 {
-    public partial class DijkstraF : Form
+    public partial class Dijkstra_F : Form
     {
         private Form menu;
         private Graph G;
 
-        public DijkstraF(Form parent, Graph graph)
+        public Dijkstra_F(Form parent, Graph graph)
         {
             InitializeComponent();
             menu = parent;
