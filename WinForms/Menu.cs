@@ -10,15 +10,6 @@ namespace WinForms
         private Form Info_F;
         private Form Dijkstra_F;
 
-        private const int X_GRANICA = 573;
-        private int time = 0;
-        enum Alg
-        {
-            Dijkstra,
-            BFS
-        }
-        private Alg CurrentAlg = Alg.BFS;
-
         public Menu_F()
         {
             InitializeComponent();
@@ -72,7 +63,7 @@ namespace WinForms
                 if (PathFile[i] == '\\') break;
                 name.Insert(0, PathFile[i]);
             }
-            return string.Join("", name);
+            return string.Join("",name);
         }
         private void DFS_B_Click(object sender, EventArgs e)
         {
@@ -118,30 +109,6 @@ namespace WinForms
 
             this.Hide();
             Dijkstra_F.Show();
-        }
-
-        private void AnimationSwitchAlgoritms_T_Tick(object sender, EventArgs e)
-        {
-            GroupBox target = CurrentAlg == Alg.BFS ? BFS_GB : Dijekstra_GB;
-            GroupBox prew = CurrentAlg == Alg.BFS ? Dijekstra_GB : BFS_GB;
-
-            //Окончание анимации
-            if (target.Location.X <= X_GRANICA) AnimationSwitchAlgoritms_T.Stop();
-            
-            time += 1;
-            if (time % 5 == 0)
-            {
-                target.Location = new Point(target.Location.X - 3, target.Location.Y);
-                prew.Location = new Point(prew.Location.X + 3, prew.Location.Y);
-            }
-        }
-
-        private void Switch_B_Click(object sender, EventArgs e)
-        {
-            CurrentAlg = CurrentAlg == Alg.Dijkstra ? Alg.BFS : Alg.Dijkstra;
-            Dijekstra_GB.Visible = !Dijekstra_GB.Visible; BFS_GB.Visible = !BFS_GB.Visible;
-
-            AnimationSwitchAlgoritms_T.Start();
         }
     }
 }

@@ -103,16 +103,6 @@ namespace WinForms.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap free_icon_font_refresh_3917293 {
-            get {
-                object obj = ResourceManager.GetObject("free-icon-font-refresh-3917293", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap free_icon_open_book_171322 {
             get {
                 object obj = ResourceManager.GetObject("free-icon-open-book-171322", resourceCulture);
@@ -166,16 +156,6 @@ namespace WinForms.Properties {
         internal static System.Drawing.Bitmap ReadGraphB {
             get {
                 object obj = ResourceManager.GetObject("ReadGraphB", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Точки_сочленения_button {
-            get {
-                object obj = ResourceManager.GetObject("Точки сочленения button", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
