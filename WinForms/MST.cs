@@ -11,11 +11,11 @@ using System.Windows.Forms.VisualStyles;
 
 namespace WinForms
 {
-    public partial class MOD_F : Form
+    public partial class MST_F : Form
     {
         private Menu_F menu;
         private Graph G;
-        public MOD_F(Menu_F parent, Graph graph)
+        public MST_F(Menu_F parent, Graph graph)
         {
             InitializeComponent();
             menu = parent;

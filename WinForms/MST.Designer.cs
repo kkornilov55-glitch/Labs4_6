@@ -1,6 +1,6 @@
 ﻿namespace WinForms
 {
-    partial class MOD_F
+    partial class MST_F
     {
         /// <summary>
         /// Required designer variable.
@@ -117,7 +117,7 @@
             MaximizeBox = false;
             Name = "MOD_F";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "Поиск в ширину";
+            Text = "Построение мод";
             FormClosed += MOD_F_FormClosed;
             ResumeLayout(false);
         }

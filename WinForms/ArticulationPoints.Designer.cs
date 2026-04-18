@@ -117,7 +117,7 @@
             MaximizeBox = false;
             Name = "ArticulationPoints_F";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "Поиск в ширину";
+            Text = "Поиск точек сочленения";
             FormClosed += ArticulationPoints_F_FormClosed;
             ResumeLayout(false);
         }

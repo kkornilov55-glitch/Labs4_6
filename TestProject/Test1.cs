@@ -168,6 +168,48 @@ namespace TestProject
 
             Assert.AreEqual(40, distance);
         }
+        [TestMethod]
+        public void FindArticulationPoints_ShouldDetectBAndC_InDebugGraph()
+        {
+            // В линейной цепи A-B-C-D точки сочленения — это внутренние узлы B и C.
+            var points = graph.FindArticulationPoints();
+            Assert.AreEqual(2, points.Count, "В цепи A-B-C-D должно быть ровно 2 точки сочленения");
+            CollectionAssert.AreEquivalent(new[] { "B", "C" }, points, "Точками сочленения должны быть вершины B и C");
+        }
+
+        [TestMethod]
+        public void FindArticulationPoints_ShouldNotMarkIsolatedEdge()
+        {
+            // Для пары E-F удаление любой вершины оставляет одну изолированную, 
+            // но не увеличивает число компонент. Точек сочленения быть не должно.
+            var points = graph.FindArticulationPoints();
+            Assert.IsFalse(points.Contains("E"), "Вершина E не является точкой сочленения");
+            Assert.IsFalse(points.Contains("F"), "Вершина F не является точкой сочленения");
+        }
+        [TestMethod]
+        public void PrimMST_ShouldBuildTreeForStartComponent()
+        {
+            // Прим строит МОД только для той компоненты, где находится стартовая вершина.
+            // В вашем файле вершины добавляются в порядке: A, B, C, D, E, F.
+            // Поэтому алгоритм начнёт с 'A' и построит дерево для компоненты {A,B,C,D}.
+            var (edges, weight) = graph.PrimMST();
+
+            if (edges.Count == 3)
+            {
+                Assert.AreEqual(60, weight, "Суммарный вес МОД для A-B-C-D должен быть 10+20+30 = 60");
+                var weights = edges.Select(e => e.Weight).ToList();
+                CollectionAssert.AreEquivalent(new[] { 10, 20, 30 }, weights);
+            }
+            else if (edges.Count == 1)
+            {
+                // Фоллбэк на случай, если порядок ключей в Dictionary изменится
+                Assert.AreEqual(40, weight, "Суммарный вес МОД для E-F должен быть 40");
+            }
+            else
+            {
+                Assert.Fail("Неожиданное количество рёбер в МОД для отладочного графа");
+            }
+        }
     }
 
     [TestClass]

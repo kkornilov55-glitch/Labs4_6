@@ -120,7 +120,7 @@ namespace WinForms
         {
             if (G == null) return;
 
-            if (MOD_F == null) MOD_F = new MOD_F(this, G);
+            if (MOD_F == null) MOD_F = new MST_F(this, G);
             MOD_F.StartPosition = FormStartPosition.Manual;
             MOD_F.Location = this.Location;
 

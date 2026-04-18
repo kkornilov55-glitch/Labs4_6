@@ -384,7 +384,7 @@
                 // Пропускаем рёбра в уже посещённые вершины
                 if (visited.Contains(to)) continue;
 
-                // ✅ Фиксируем ребро с ОБЕИМИ вершинами
+                // Фиксируем ребро с ОБЕИМИ вершинами
                 visited.Add(to);
                 mstEdges.Add((from, to, weight));
                 totalWeight += weight;
