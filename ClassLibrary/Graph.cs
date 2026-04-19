@@ -1,4 +1,6 @@
-﻿namespace ClassLibrary
+﻿using System.Text;
+
+namespace ClassLibrary
 {
     public class Graph
     {
@@ -291,113 +293,135 @@
             }
         }
         /// <summary>
-        /// Поиск всех точек сочленения в графе (вершин, удаление которых делает граф несвязным)
+        /// Построение минимального остовного дерева алгоритмом Прима (с логом)
         /// </summary>
-        /// <returns>Список городов-точек сочленения</returns>
-        public List<string> FindArticulationPoints()
+        public (List<(string From, string To, int Weight)> mstEdges, int totalWeight, string log) PrimMST(StringBuilder log = null)
         {
+            if (log != null) log.AppendLine("=== АЛГОРИТМ ПРИМА ===\n");
+
+            if (adjacencyList.Count == 0)
+                return (new List<(string, string, int)>(), 0, "");
+
+            var mstEdges = new List<(string, string, int)>();
+            var visited = new HashSet<string>();
+            var pq = new PriorityQueue<(string from, string to, int weight), int>();
+
+            int totalWeight = 0;
+            string start = adjacencyList.Keys.First();
+            visited.Add(start);
+
+            if (log != null) log.AppendLine($"1. Начинаем с вершины: {start}");
+
+            foreach (var edge in adjacencyList[start])
+                pq.Enqueue((start, edge.To, edge.Weight), edge.Weight);
+
+            int step = 1;
+            while (pq.Count > 0 && visited.Count < adjacencyList.Count)
+            {
+                var (from, to, weight) = pq.Dequeue();
+
+                if (visited.Contains(to))
+                {
+                    if (log != null) log.AppendLine($"   Шаг {step}: {from}→{to} ({weight}) - ПРОПУСК (вершина уже в дереве)");
+                    step++;
+                    continue;
+                }
+
+                if (log != null)
+                {
+                    log.AppendLine($"   Шаг {step}: {from}→{to} ({weight}) - ДОБАВЛЕНО");
+                    log.AppendLine($"          Вершины в дереве: {string.Join(", ", visited)} → {to}");
+                }
+
+                visited.Add(to);
+                mstEdges.Add((from, to, weight));
+                totalWeight += weight;
+
+                foreach (var edge in adjacencyList[to])
+                {
+                    if (!visited.Contains(edge.To))
+                        pq.Enqueue((to, edge.To, edge.Weight), edge.Weight);
+                }
+
+                step++;
+            }
+
+            if (log != null) log.AppendLine($"\nИТОГО: вес = {totalWeight}");
+
+            return (mstEdges, totalWeight, log?.ToString() ?? "");
+        }
+
+        /// <summary>
+        /// Поиск точек сочленения (с логом)
+        /// </summary>
+        public (List<string> points, string log) FindArticulationPoints(StringBuilder log = null)
+        {
+            if (log != null) log.AppendLine("=== ТОЧКИ СОЧЛЕНЕНИЯ ===\n");
+
             List<string> articulationPoints = new List<string>();
-            Dictionary<string, int> tin = new Dictionary<string, int>();      // Время входа
-            Dictionary<string, int> low = new Dictionary<string, int>();      // Минимальное достижимое время
+            Dictionary<string, int> tin = new Dictionary<string, int>();
+            Dictionary<string, int> low = new Dictionary<string, int>();
             Dictionary<string, string> parent = new Dictionary<string, string>();
             int timer = 0;
 
-            // Обход всех вершин (на случай несвязного графа)
             foreach (var vertex in adjacencyList.Keys)
             {
                 if (!tin.ContainsKey(vertex))
                 {
-                    DFS_Articulation(vertex, null, ref timer, tin, low, parent, articulationPoints);
+                    if (log != null) log.AppendLine($"Начинаем обход с вершины: {vertex}");
+                    DFS_Articulation(vertex, null, ref timer, tin, low, parent, articulationPoints, log, 0);
                 }
             }
 
-            return articulationPoints;
+            return (articulationPoints, log?.ToString() ?? "");
         }
 
         private void DFS_Articulation(string u, string p, ref int timer,
                                       Dictionary<string, int> tin, Dictionary<string, int> low,
-                                      Dictionary<string, string> parentDict, List<string> ap)
+                                      Dictionary<string, string> parentDict, List<string> ap,
+                                      StringBuilder log = null, int depth = 0)
         {
+            string indent = new string(' ', depth * 2);
+
             tin[u] = low[u] = timer++;
             int children = 0;
+
+            if (log != null) log.AppendLine($"{indent}Вход в {u} (tin={tin[u]}, low={low[u]})");
 
             foreach (var edge in adjacencyList[u])
             {
                 string v = edge.To;
 
-                if (v == p) continue; // Пропускаем ребро к родителю
+                if (v == p) continue;
 
                 if (tin.ContainsKey(v))
                 {
-                    // Обратное ребро (back edge)
+                    if (log != null) log.AppendLine($"{indent}  {u}→{v} - обратное ребро, low[{u}] = {Math.Min(low[u], tin[v])}");
                     low[u] = Math.Min(low[u], tin[v]);
                 }
                 else
                 {
                     children++;
                     parentDict[v] = u;
-                    DFS_Articulation(v, u, ref timer, tin, low, parentDict, ap);
 
-                    // Обновляем low после возврата из рекурсии
+                    if (log != null) log.AppendLine($"{indent}  {u}→{v} - рекурсивный вызов");
+                    DFS_Articulation(v, u, ref timer, tin, low, parentDict, ap, log, depth + 1);
+
                     low[u] = Math.Min(low[u], low[v]);
 
-                    // Условие точки сочленения для НЕ корня
-                    if (p != null && low[v] >= tin[u])
+                    if (p != null && low[v] >= tin[u] && !ap.Contains(u))
                     {
-                        if (!ap.Contains(u)) ap.Add(u);
+                        if (log != null) log.AppendLine($"{indent}  !!! {u} - точка сочленения (low[{v}]={low[v]} >= tin[{u}]={tin[u]})");
+                        ap.Add(u);
                     }
                 }
             }
 
-            // Условие для корня DFS-дерева
-            if (p == null && children > 1)
+            if (p == null && children > 1 && !ap.Contains(u))
             {
-                if (!ap.Contains(u)) ap.Add(u);
+                if (log != null) log.AppendLine($"{indent}!!! {u} - точка сочленения (корень с {children} детьми)");
+                ap.Add(u);
             }
-        }
-        /// <summary>
-        /// Построение минимального остовного дерева алгоритмом Прима
-        /// </summary>
-        /// <returns>Кортеж: (список рёбер МОД с указанием обеих вершин, суммарный вес)</returns>
-        public (List<(string From, string To, int Weight)> mstEdges, int totalWeight) PrimMST()
-        {
-            if (adjacencyList.Count == 0)
-                return (new List<(string, string, int)>(), 0);
-
-            var mstEdges = new List<(string, string, int)>();
-            var visited = new HashSet<string>();
-            // В очереди храним: (откуда, куда, вес)
-            var pq = new PriorityQueue<(string from, string to, int weight), int>();
-
-            int totalWeight = 0;
-            string start = adjacencyList.Keys.First(); // Начинаем с первой вершины
-            visited.Add(start);
-
-            // Добавляем рёбра из стартовой вершины
-            foreach (var edge in adjacencyList[start])
-                pq.Enqueue((start, edge.To, edge.Weight), edge.Weight);
-
-            while (pq.Count > 0 && visited.Count < adjacencyList.Count)
-            {
-                var (from, to, weight) = pq.Dequeue();
-
-                // Пропускаем рёбра в уже посещённые вершины
-                if (visited.Contains(to)) continue;
-
-                // Фиксируем ребро с ОБЕИМИ вершинами
-                visited.Add(to);
-                mstEdges.Add((from, to, weight));
-                totalWeight += weight;
-
-                // Добавляем новые рёбра из текущей вершины
-                foreach (var edge in adjacencyList[to])
-                {
-                    if (!visited.Contains(edge.To))
-                        pq.Enqueue((to, edge.To, edge.Weight), edge.Weight);
-                }
-            }
-
-            return (mstEdges, totalWeight);
         }
     }
 }

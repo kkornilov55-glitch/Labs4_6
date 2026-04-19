@@ -24,27 +24,61 @@ namespace WinForms
 
         private void StartMOD_B_Click(object sender, EventArgs e)
         {
+            //try
+            //{
+            //    Stopwatch timer = new Stopwatch();
+            //    timer.Start();
+            //    var (edges, totalWeight) = G.PrimMST();
+            //    timer.Stop();
+            //    MessageBox.Show($"Время выполнения алгоритма: {timer.ElapsedMilliseconds} мс");
+
+            //    StringBuilder result = new StringBuilder();
+            //    result.AppendLine($"Суммарый вес дерева: {totalWeight} км\n");
+            //    result.AppendLine("Рёбра остовного дерева:");
+
+            //    result.Append(edges[0].From);
+            //    foreach (var edge in edges)
+            //        result.Append($" → {edge.To}  ({edge.Weight} км)");
+
+            //    Result_L.Text = result.ToString();
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+
+
             try
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
-                var (edges, totalWeight) = G.PrimMST();
+
+                StringBuilder log = new StringBuilder();
+                var (edges, totalWeight, logText) = G.PrimMST(log);
+
                 timer.Stop();
-                MessageBox.Show($"Время выполнения алгоритма: {timer.ElapsedMilliseconds} мс");
 
                 StringBuilder result = new StringBuilder();
-                result.AppendLine($"Суммарый вес дерева: {totalWeight} км\n");
-                result.AppendLine("Рёбра остовного дерева:");
+                result.AppendLine($"Суммарный вес: {totalWeight} км\n");
+                result.AppendLine("Рёбра дерева:");
 
-                result.Append(edges[0].From);
-                foreach (var edge in edges)
-                    result.Append($" → {edge.To}  ({edge.Weight} км)");
+                if (edges.Count > 0)
+                {
+                    result.Append(edges[0].From);
+                    foreach (var edge in edges)
+                        result.Append($" → {edge.To} ({edge.Weight})");
+                }
 
                 Result_L.Text = result.ToString();
+
+                // Показываем лог отдельным окном
+                MessageBox.Show($"Время: {timer.ElapsedMilliseconds} мс\n" + logText, "Как работал алгоритм",
+                               MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Ошибка",
+                               MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
