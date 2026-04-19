@@ -352,11 +352,11 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Поиск точек сочленения (с логом)
+        /// Поиск всех точек сочленения (с логом)
         /// </summary>
-        public (List<string> points, string log) FindArticulationPoints(StringBuilder log = null)
+        public (List<string> points, string log) FindArticulationPoints(StringBuilder sb = null)
         {
-            if (log != null) log.AppendLine("=== ТОЧКИ СОЧЛЕНЕНИЯ ===\n");
+            if (sb != null) sb.AppendLine("=== ТОЧКИ СОЧЛЕНЕНИЯ ===\n");
 
             List<string> articulationPoints = new List<string>();
             Dictionary<string, int> tin = new Dictionary<string, int>();
@@ -368,25 +368,23 @@ namespace ClassLibrary
             {
                 if (!tin.ContainsKey(vertex))
                 {
-                    if (log != null) log.AppendLine($"Начинаем обход с вершины: {vertex}");
-                    DFS_Articulation(vertex, null, ref timer, tin, low, parent, articulationPoints, log, 0);
+                    if (sb != null) sb.AppendLine($"Запуск поиска с вершины: {vertex}\n");
+                    DFS_Articulation(vertex, null, ref timer, tin, low, parent, articulationPoints, sb);
                 }
             }
 
-            return (articulationPoints, log?.ToString() ?? "");
+            return (articulationPoints, sb?.ToString() ?? "");
         }
 
         private void DFS_Articulation(string u, string p, ref int timer,
                                       Dictionary<string, int> tin, Dictionary<string, int> low,
                                       Dictionary<string, string> parentDict, List<string> ap,
-                                      StringBuilder log = null, int depth = 0)
+                                      StringBuilder sb = null)
         {
-            string indent = new string(' ', depth * 2);
-
             tin[u] = low[u] = timer++;
             int children = 0;
 
-            if (log != null) log.AppendLine($"{indent}Вход в {u} (tin={tin[u]}, low={low[u]})");
+            if (sb != null) sb.Append($" → {u}");
 
             foreach (var edge in adjacencyList[u])
             {
@@ -396,30 +394,30 @@ namespace ClassLibrary
 
                 if (tin.ContainsKey(v))
                 {
-                    if (log != null) log.AppendLine($"{indent}  {u}→{v} - обратное ребро, low[{u}] = {Math.Min(low[u], tin[v])}");
+                    // Обратное ребро
                     low[u] = Math.Min(low[u], tin[v]);
                 }
                 else
                 {
                     children++;
                     parentDict[v] = u;
-
-                    if (log != null) log.AppendLine($"{indent}  {u}→{v} - рекурсивный вызов");
-                    DFS_Articulation(v, u, ref timer, tin, low, parentDict, ap, log, depth + 1);
+                    DFS_Articulation(v, u, ref timer, tin, low, parentDict, ap, sb);
 
                     low[u] = Math.Min(low[u], low[v]);
 
+                    // Проверка на точку сочленения
                     if (p != null && low[v] >= tin[u] && !ap.Contains(u))
                     {
-                        if (log != null) log.AppendLine($"{indent}  !!! {u} - точка сочленения (low[{v}]={low[v]} >= tin[{u}]={tin[u]})");
+                        if (sb != null) sb.Append($"\n !!! {u} - ТОЧКА СОЧЛЕНЕНИЯ (разрывает связь с городом \"{v}\")");
                         ap.Add(u);
                     }
                 }
             }
 
+            // Проверка для корня
             if (p == null && children > 1 && !ap.Contains(u))
             {
-                if (log != null) log.AppendLine($"{indent}!!! {u} - точка сочленения (корень с {children} детьми)");
+                if (sb != null) sb.Append($"\n !!! {u} - ТОЧКА СОЧЛЕНЕНИЯ (корень с {children} поддеревьями)");
                 ap.Add(u);
             }
         }

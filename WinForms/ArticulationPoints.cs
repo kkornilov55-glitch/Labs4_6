@@ -22,19 +22,33 @@ namespace WinForms
             G = graph;
         }
 
-        //private void StartArticulationPoints_B_Click(object sender, EventArgs e)
-        //{
-        //    Stopwatch timer = new Stopwatch();
-        //    timer.Start();
-        //    var points = G.FindArticulationPoints();
-        //    timer.Stop();
-        //    MessageBox.Show($"Время выполнения алгоритма: {timer.ElapsedMilliseconds} мс");
+        private void StartArticulationPoints_B_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Stopwatch timer = new Stopwatch();
+                timer.Start();
 
-        //    if (points.Count == 0)
-        //        Result_L.Text = "Граф не имеет точек сочленения";
-        //    else
-        //        Result_L.Text = "Точки сочленения:\n" + string.Join(" , ", points);
-        //}
+                StringBuilder sb = new StringBuilder();
+                var (points, log) = G.FindArticulationPoints(sb);
+
+                timer.Stop();
+
+                // Вывод результата
+                if (points.Count == 0)
+                    Result_L.Text = "Граф не имеет точек сочленения";
+                else
+                    Result_L.Text = $"Точки сочленения:\n{string.Join(", ", points)}";
+
+                // Показываем простой лог
+                MessageBox.Show(log, "Как работал алгоритм", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
         private void Menu_B_Click(object sender, EventArgs e)
         {

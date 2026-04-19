@@ -78,7 +78,7 @@
             StartMOD_B.TabIndex = 24;
             StartMOD_B.Text = "Старт";
             StartMOD_B.UseVisualStyleBackColor = true;
-            //StartMOD_B.Click += StartArticulationPoints_B_Click;
+            StartMOD_B.Click += StartArticulationPoints_B_Click;
             // 
             // Result_L
             // 
