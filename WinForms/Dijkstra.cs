@@ -1,4 +1,5 @@
 ﻿using ClassLibrary;
+using Microsoft.VisualBasic.Logging;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -51,9 +52,16 @@ namespace WinForms
         {
             var from = From_CB.SelectedItem?.ToString();
             var to = To_CB.SelectedItem?.ToString();
+
+            // Создаем буфер для логов
+            StringBuilder sb = new StringBuilder();
+
             Stopwatch timer = new Stopwatch();
             timer.Start();
-            G.Dijkstra(from);
+
+            // Вызываем алгоритм, передавая буфер
+            G.Dijkstra(from, sb);
+
             timer.Stop();
             MessageBox.Show($"Время выполнения алгоритма: {timer.ElapsedMilliseconds} мс");
 
@@ -63,6 +71,10 @@ namespace WinForms
 
                 Dijkstra_Result_L.Text = string.Join(" -> ", way);
                 WayLength_L.Text = $"{wayLength} км";
+
+                string filePath = "Dijkstra_Log.txt"; // Имя файла
+                File.WriteAllText(filePath, sb.ToString()); // Записать текст
+                Process.Start(new ProcessStartInfo(filePath) { UseShellExecute = true }); // Открыть файл в блокноте
             }
             catch (Exception ex)
             {

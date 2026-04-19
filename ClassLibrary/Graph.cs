@@ -247,7 +247,8 @@ namespace ClassLibrary
             return towns;
 
         }
-        public void Dijkstra(string startV)
+
+        public void Dijkstra(string startV, System.Text.StringBuilder sb = null)
         {
             if (!adjacencyList.ContainsKey(startV))
                 throw new InvalidDataException("В текущем графе не существует города с таким названием");
@@ -262,17 +263,29 @@ namespace ClassLibrary
             Distance[startV] = 0;
             parent[startV] = null;
 
-            var pq = new PriorityQueue<string, int>();
+            // Заголовок лога
+            if (sb != null)
+            {
+                sb.AppendLine("=== АЛГОРИТМ ДЕЙКСТРЫ ===");
+                sb.AppendLine($"Начальная вершина: {startV}\n");
+            }
 
+            var pq = new PriorityQueue<string, int>();
             pq.Enqueue(startV, 0);
 
             while (pq.Count > 0)
             {
-
                 string MinV = pq.Dequeue();
-                //Если наткнулись на старую вершину, пропускаем так как она с лучшим путём уже обработана
-                if (Visited[MinV]) continue;
+
+                // Если вершина уже обработана, пропускаем
+                if (Visited[MinV])
+                {
+                    if (sb != null) sb.AppendLine($"Шаг: Вершина {MinV} уже посещена (пропуск)");
+                    continue;
+                }
                 Visited[MinV] = true;
+
+                if (sb != null) sb.AppendLine($">>> Обрабатываем вершину {MinV} (текущее расстояние = {Distance[MinV]})");
 
                 foreach (Edge E in adjacencyList[MinV])
                 {
@@ -281,15 +294,24 @@ namespace ClassLibrary
                     if (!Visited[neighbor])
                     {
                         int newDist = Distance[MinV] + E.Weight;
+
+                        if (sb != null) sb.AppendLine($" -> Сосед {neighbor}: путь через {MinV} = {Distance[MinV]} + {E.Weight} = {newDist}");
+
                         if (newDist < Distance[neighbor])
                         {
                             Distance[neighbor] = newDist;
                             parent[neighbor] = MinV;
-
                             pq.Enqueue(neighbor, newDist);
+
+                            if (sb != null) sb.AppendLine($"ОБНОВЛЕНО: расстояние до {neighbor} уменьшено до {newDist}");
+                        }
+                        else
+                        {
+                            if (sb != null) sb.AppendLine($"Пропуск: текущее расстояние ({Distance[neighbor]}) лучше");
                         }
                     }
                 }
+                if (sb != null) sb.AppendLine("");
             }
         }
         /// <summary>

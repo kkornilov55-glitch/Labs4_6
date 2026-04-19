@@ -24,30 +24,6 @@ namespace WinForms
 
         private void StartMOD_B_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    Stopwatch timer = new Stopwatch();
-            //    timer.Start();
-            //    var (edges, totalWeight) = G.PrimMST();
-            //    timer.Stop();
-            //    MessageBox.Show($"Время выполнения алгоритма: {timer.ElapsedMilliseconds} мс");
-
-            //    StringBuilder result = new StringBuilder();
-            //    result.AppendLine($"Суммарый вес дерева: {totalWeight} км\n");
-            //    result.AppendLine("Рёбра остовного дерева:");
-
-            //    result.Append(edges[0].From);
-            //    foreach (var edge in edges)
-            //        result.Append($" → {edge.To}  ({edge.Weight} км)");
-
-            //    Result_L.Text = result.ToString();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-
-
             try
             {
                 Stopwatch timer = new Stopwatch();
@@ -71,9 +47,9 @@ namespace WinForms
 
                 Result_L.Text = result.ToString();
 
-                // Показываем лог отдельным окном
-                MessageBox.Show($"Время: {timer.ElapsedMilliseconds} мс\n" + logText, "Как работал алгоритм",
-                               MessageBoxButtons.OK, MessageBoxIcon.Information);
+                string filePath = "PrimMST_Log.txt"; // Имя файла
+                File.WriteAllText(filePath, $"Время: {timer.ElapsedMilliseconds} мс\n" + logText); // Записать текст
+                Process.Start(new ProcessStartInfo(filePath) { UseShellExecute = true }); // Открыть файл в блокноте
             }
             catch (Exception ex)
             {

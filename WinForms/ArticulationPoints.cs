@@ -40,8 +40,9 @@ namespace WinForms
                 else
                     Result_L.Text = $"Точки сочленения:\n{string.Join(", ", points)}";
 
-                // Показываем простой лог
-                MessageBox.Show(log, "Как работал алгоритм", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                string filePath = "ArticulationPoints_Log.txt"; // Имя файла
+                File.WriteAllText(filePath, log); // Записать текст
+                Process.Start(new ProcessStartInfo(filePath) { UseShellExecute = true }); // Открыть файл в блокноте
             }
             catch (Exception ex)
             {
